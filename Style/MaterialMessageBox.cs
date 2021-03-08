@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Blueprintz
@@ -37,7 +39,7 @@ namespace Blueprintz
 
             // Show
             Show();
-            TopLevel = true;
+            SetTopLevel(true);
         }
 
         #region Form
@@ -128,16 +130,20 @@ namespace Blueprintz
         private void okButton_Click(object sender, EventArgs e)
         {
             closingAlowed = true;
+            CloseDelayed();
+        }
+
+        private async void CloseDelayed()
+        {
+            await Task.Delay(150);
             Close();
         }
 
         private void MaterialMessageBox_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (closeCallback != null)
-            {
                 if (closingAlowed) closeCallback(DialogResult.OK);
                 else closeCallback(DialogResult.None);
-            }
         }
         #endregion
 

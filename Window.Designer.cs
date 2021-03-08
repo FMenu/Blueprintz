@@ -32,16 +32,18 @@ namespace Blueprintz
             this.MainTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.MainControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.startBorder = new MaterialSkin.Controls.MaterialCard();
+            this.startLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.startPanel = new MaterialSkin.Controls.MaterialCard();
             this.MainControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.startBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabSelector
             // 
-            this.MainTabSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.MainTabSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainTabSelector.BaseTabControl = this.MainControl;
             this.MainTabSelector.Depth = 0;
@@ -79,15 +81,19 @@ namespace Blueprintz
             this.tabPage1.Text = "Start";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // startBorder
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1193, 607);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.startBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.startBorder.Controls.Add(this.startPanel);
+            this.startBorder.Depth = 0;
+            this.startBorder.ForeColor = System.Drawing.Color.LightGray;
+            this.startBorder.Location = new System.Drawing.Point(463, 118);
+            this.startBorder.Margin = new System.Windows.Forms.Padding(14);
+            this.startBorder.MouseState = MaterialSkin.MouseState.HOVER;
+            this.startBorder.Name = "startBorder";
+            this.startBorder.Padding = new System.Windows.Forms.Padding(14);
+            this.startBorder.Size = new System.Drawing.Size(250, 450);
+            this.startBorder.TabIndex = 1;
             // 
             // startLabel
             // 
@@ -102,18 +108,28 @@ namespace Blueprintz
             this.startLabel.TabIndex = 0;
             this.startLabel.Text = "Start";
             // 
-            // startBorder
+            // tabPage2
             // 
-            this.startBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.startBorder.Depth = 0;
-            this.startBorder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.startBorder.Location = new System.Drawing.Point(465, 1120);
-            this.startBorder.Margin = new System.Windows.Forms.Padding(14);
-            this.startBorder.MouseState = MaterialSkin.MouseState.HOVER;
-            this.startBorder.Name = "startBorder";
-            this.startBorder.Padding = new System.Windows.Forms.Padding(14);
-            this.startBorder.Size = new System.Drawing.Size(249, 449);
-            this.startBorder.TabIndex = 1;
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1193, 607);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // startPanel
+            // 
+            this.startPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.startPanel.Depth = 0;
+            this.startPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.startPanel.Location = new System.Drawing.Point(2, 2);
+            this.startPanel.Margin = new System.Windows.Forms.Padding(14);
+            this.startPanel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.startPanel.Name = "startPanel";
+            this.startPanel.Padding = new System.Windows.Forms.Padding(14);
+            this.startPanel.Size = new System.Drawing.Size(246, 446);
+            this.startPanel.TabIndex = 0;
             // 
             // IdiotTest
             // 
@@ -128,6 +144,7 @@ namespace Blueprintz
             this.MainControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.startBorder.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -140,6 +157,7 @@ namespace Blueprintz
         private System.Windows.Forms.TabPage tabPage2;
         private MaterialSkin.Controls.MaterialLabel startLabel;
         private MaterialSkin.Controls.MaterialCard startBorder;
+        private MaterialSkin.Controls.MaterialCard startPanel;
     }
 }
 

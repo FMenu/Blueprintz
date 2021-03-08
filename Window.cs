@@ -21,7 +21,7 @@ namespace Blueprintz
 
         private void CallbackTest(DialogResult result)
         {
-            MessageBox.Show("callback!");
+            
         }
 
         private void InitializeMaterialSkin()
