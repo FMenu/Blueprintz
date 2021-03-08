@@ -31,14 +31,17 @@ namespace Blueprintz
         {
             this.MainTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.MainControl = new MaterialSkin.Controls.MaterialTabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.start = new System.Windows.Forms.TabPage();
             this.startBorder = new MaterialSkin.Controls.MaterialCard();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.editor = new System.Windows.Forms.TabPage();
             this.startPanel = new MaterialSkin.Controls.MaterialCard();
+            this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
+            this.loadExistingBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.MainControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
+            this.startPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabSelector
@@ -57,8 +60,8 @@ namespace Blueprintz
             // 
             // MainControl
             // 
-            this.MainControl.Controls.Add(this.tabPage1);
-            this.MainControl.Controls.Add(this.tabPage2);
+            this.MainControl.Controls.Add(this.start);
+            this.MainControl.Controls.Add(this.editor);
             this.MainControl.Depth = 0;
             this.MainControl.ItemSize = new System.Drawing.Size(50, 18);
             this.MainControl.Location = new System.Drawing.Point(0, 118);
@@ -68,18 +71,19 @@ namespace Blueprintz
             this.MainControl.SelectedIndex = 0;
             this.MainControl.Size = new System.Drawing.Size(1201, 633);
             this.MainControl.TabIndex = 1;
+            this.MainControl.SelectedIndexChanged += new System.EventHandler(this.MainControl_SelectedIndexChanged);
             // 
-            // tabPage1
+            // start
             // 
-            this.tabPage1.Controls.Add(this.startBorder);
-            this.tabPage1.Controls.Add(this.startLabel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1193, 607);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Start";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.start.Controls.Add(this.startBorder);
+            this.start.Controls.Add(this.startLabel);
+            this.start.Location = new System.Drawing.Point(4, 22);
+            this.start.Name = "start";
+            this.start.Padding = new System.Windows.Forms.Padding(3);
+            this.start.Size = new System.Drawing.Size(1193, 607);
+            this.start.TabIndex = 0;
+            this.start.Text = "Start";
+            this.start.UseVisualStyleBackColor = true;
             // 
             // startBorder
             // 
@@ -87,12 +91,12 @@ namespace Blueprintz
             this.startBorder.Controls.Add(this.startPanel);
             this.startBorder.Depth = 0;
             this.startBorder.ForeColor = System.Drawing.Color.LightGray;
-            this.startBorder.Location = new System.Drawing.Point(463, 118);
+            this.startBorder.Location = new System.Drawing.Point(471, 93);
             this.startBorder.Margin = new System.Windows.Forms.Padding(14);
             this.startBorder.MouseState = MaterialSkin.MouseState.HOVER;
             this.startBorder.Name = "startBorder";
             this.startBorder.Padding = new System.Windows.Forms.Padding(14);
-            this.startBorder.Size = new System.Drawing.Size(250, 450);
+            this.startBorder.Size = new System.Drawing.Size(252, 478);
             this.startBorder.TabIndex = 1;
             // 
             // startLabel
@@ -101,26 +105,28 @@ namespace Blueprintz
             this.startLabel.Depth = 0;
             this.startLabel.Font = new System.Drawing.Font("Roboto", 34F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.startLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            this.startLabel.Location = new System.Drawing.Point(552, 63);
+            this.startLabel.Location = new System.Drawing.Point(560, 38);
             this.startLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.startLabel.Name = "startLabel";
             this.startLabel.Size = new System.Drawing.Size(74, 41);
             this.startLabel.TabIndex = 0;
             this.startLabel.Text = "Start";
             // 
-            // tabPage2
+            // editor
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1193, 607);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.editor.Location = new System.Drawing.Point(4, 22);
+            this.editor.Name = "editor";
+            this.editor.Padding = new System.Windows.Forms.Padding(3);
+            this.editor.Size = new System.Drawing.Size(1193, 607);
+            this.editor.TabIndex = 1;
+            this.editor.Text = "Editor";
+            this.editor.UseVisualStyleBackColor = true;
             // 
             // startPanel
             // 
             this.startPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.startPanel.Controls.Add(this.loadExistingBlueprintButton);
+            this.startPanel.Controls.Add(this.createNewBlueprintButton);
             this.startPanel.Depth = 0;
             this.startPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.startPanel.Location = new System.Drawing.Point(2, 2);
@@ -128,8 +134,46 @@ namespace Blueprintz
             this.startPanel.MouseState = MaterialSkin.MouseState.HOVER;
             this.startPanel.Name = "startPanel";
             this.startPanel.Padding = new System.Windows.Forms.Padding(14);
-            this.startPanel.Size = new System.Drawing.Size(246, 446);
+            this.startPanel.Size = new System.Drawing.Size(248, 474);
             this.startPanel.TabIndex = 0;
+            // 
+            // createNewBlueprintButton
+            // 
+            this.createNewBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.createNewBlueprintButton.Depth = 0;
+            this.createNewBlueprintButton.DrawShadows = true;
+            this.createNewBlueprintButton.HighEmphasis = true;
+            this.createNewBlueprintButton.Icon = null;
+            this.createNewBlueprintButton.Location = new System.Drawing.Point(21, 23);
+            this.createNewBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.createNewBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.createNewBlueprintButton.Name = "createNewBlueprintButton";
+            this.createNewBlueprintButton.Size = new System.Drawing.Size(207, 36);
+            this.createNewBlueprintButton.TabIndex = 0;
+            this.createNewBlueprintButton.Text = "    Create new Blueprint   ";
+            this.createNewBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.createNewBlueprintButton.UseAccentColor = false;
+            this.createNewBlueprintButton.UseVisualStyleBackColor = true;
+            this.createNewBlueprintButton.Click += new System.EventHandler(this.createNewBlueprintButton_Click);
+            // 
+            // loadExistingBlueprintButton
+            // 
+            this.loadExistingBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadExistingBlueprintButton.Depth = 0;
+            this.loadExistingBlueprintButton.DrawShadows = true;
+            this.loadExistingBlueprintButton.HighEmphasis = true;
+            this.loadExistingBlueprintButton.Icon = null;
+            this.loadExistingBlueprintButton.Location = new System.Drawing.Point(21, 81);
+            this.loadExistingBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.loadExistingBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.loadExistingBlueprintButton.Name = "loadExistingBlueprintButton";
+            this.loadExistingBlueprintButton.Size = new System.Drawing.Size(208, 36);
+            this.loadExistingBlueprintButton.TabIndex = 1;
+            this.loadExistingBlueprintButton.Text = "Load Existing Blueprint";
+            this.loadExistingBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.loadExistingBlueprintButton.UseAccentColor = false;
+            this.loadExistingBlueprintButton.UseVisualStyleBackColor = true;
+            this.loadExistingBlueprintButton.Click += new System.EventHandler(this.loadExistingBlueprintButton_Click);
             // 
             // IdiotTest
             // 
@@ -142,9 +186,11 @@ namespace Blueprintz
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.start.ResumeLayout(false);
+            this.start.PerformLayout();
             this.startBorder.ResumeLayout(false);
+            this.startPanel.ResumeLayout(false);
+            this.startPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -153,11 +199,13 @@ namespace Blueprintz
 
         private MaterialSkin.Controls.MaterialTabSelector MainTabSelector;
         private MaterialSkin.Controls.MaterialTabControl MainControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage start;
+        private System.Windows.Forms.TabPage editor;
         private MaterialSkin.Controls.MaterialLabel startLabel;
         private MaterialSkin.Controls.MaterialCard startBorder;
         private MaterialSkin.Controls.MaterialCard startPanel;
+        private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
+        private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
     }
 }
 
