@@ -81,6 +81,7 @@ namespace Blueprintz
                 new MultichoiceMaterialMessageBox(ColorSchemes.dark_3, "Don't forget to save!",
                     new string[2] { "Don't forget to save your work!", "Do you want to save it now?" },
                     true, CloseCallback, this);
+            else Close();
         }
 
         private void CloseCallback(DialogResult result)
