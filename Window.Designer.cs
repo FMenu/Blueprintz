@@ -33,11 +33,12 @@ namespace Blueprintz
             this.MainControl = new MaterialSkin.Controls.MaterialTabControl();
             this.start = new System.Windows.Forms.TabPage();
             this.startBorder = new MaterialSkin.Controls.MaterialCard();
+            this.startPanel = new MaterialSkin.Controls.MaterialCard();
+            this.loadExistingBlueprintButton = new MaterialSkin.Controls.MaterialButton();
+            this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
-            this.startPanel = new MaterialSkin.Controls.MaterialCard();
-            this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
-            this.loadExistingBlueprintButton = new MaterialSkin.Controls.MaterialButton();
+            this.quitButton = new MaterialSkin.Controls.MaterialButton();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
@@ -90,7 +91,7 @@ namespace Blueprintz
             this.startBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.startBorder.Controls.Add(this.startPanel);
             this.startBorder.Depth = 0;
-            this.startBorder.ForeColor = System.Drawing.Color.LightGray;
+            this.startBorder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.startBorder.Location = new System.Drawing.Point(471, 93);
             this.startBorder.Margin = new System.Windows.Forms.Padding(14);
             this.startBorder.MouseState = MaterialSkin.MouseState.HOVER;
@@ -98,6 +99,60 @@ namespace Blueprintz
             this.startBorder.Padding = new System.Windows.Forms.Padding(14);
             this.startBorder.Size = new System.Drawing.Size(252, 478);
             this.startBorder.TabIndex = 1;
+            // 
+            // startPanel
+            // 
+            this.startPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.startPanel.Controls.Add(this.quitButton);
+            this.startPanel.Controls.Add(this.loadExistingBlueprintButton);
+            this.startPanel.Controls.Add(this.createNewBlueprintButton);
+            this.startPanel.Depth = 0;
+            this.startPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.startPanel.Location = new System.Drawing.Point(2, 2);
+            this.startPanel.Margin = new System.Windows.Forms.Padding(14);
+            this.startPanel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.startPanel.Name = "startPanel";
+            this.startPanel.Padding = new System.Windows.Forms.Padding(14);
+            this.startPanel.Size = new System.Drawing.Size(248, 474);
+            this.startPanel.TabIndex = 0;
+            // 
+            // loadExistingBlueprintButton
+            // 
+            this.loadExistingBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.loadExistingBlueprintButton.Depth = 0;
+            this.loadExistingBlueprintButton.DrawShadows = true;
+            this.loadExistingBlueprintButton.HighEmphasis = true;
+            this.loadExistingBlueprintButton.Icon = null;
+            this.loadExistingBlueprintButton.Location = new System.Drawing.Point(21, 81);
+            this.loadExistingBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.loadExistingBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.loadExistingBlueprintButton.Name = "loadExistingBlueprintButton";
+            this.loadExistingBlueprintButton.Size = new System.Drawing.Size(208, 36);
+            this.loadExistingBlueprintButton.TabIndex = 1;
+            this.loadExistingBlueprintButton.Text = "Load Existing Blueprint";
+            this.loadExistingBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.loadExistingBlueprintButton.UseAccentColor = false;
+            this.loadExistingBlueprintButton.UseVisualStyleBackColor = true;
+            this.loadExistingBlueprintButton.Click += new System.EventHandler(this.loadExistingBlueprintButton_Click);
+            // 
+            // createNewBlueprintButton
+            // 
+            this.createNewBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.createNewBlueprintButton.Depth = 0;
+            this.createNewBlueprintButton.DrawShadows = true;
+            this.createNewBlueprintButton.HighEmphasis = true;
+            this.createNewBlueprintButton.Icon = null;
+            this.createNewBlueprintButton.Location = new System.Drawing.Point(21, 23);
+            this.createNewBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.createNewBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.createNewBlueprintButton.Name = "createNewBlueprintButton";
+            this.createNewBlueprintButton.Size = new System.Drawing.Size(207, 36);
+            this.createNewBlueprintButton.TabIndex = 0;
+            this.createNewBlueprintButton.Text = "    Create new Blueprint   ";
+            this.createNewBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.createNewBlueprintButton.UseAccentColor = false;
+            this.createNewBlueprintButton.UseVisualStyleBackColor = true;
+            this.createNewBlueprintButton.Click += new System.EventHandler(this.createNewBlueprintButton_Click);
             // 
             // startLabel
             // 
@@ -122,58 +177,26 @@ namespace Blueprintz
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
             // 
-            // startPanel
+            // quitButton
             // 
-            this.startPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.startPanel.Controls.Add(this.loadExistingBlueprintButton);
-            this.startPanel.Controls.Add(this.createNewBlueprintButton);
-            this.startPanel.Depth = 0;
-            this.startPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.startPanel.Location = new System.Drawing.Point(2, 2);
-            this.startPanel.Margin = new System.Windows.Forms.Padding(14);
-            this.startPanel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.startPanel.Name = "startPanel";
-            this.startPanel.Padding = new System.Windows.Forms.Padding(14);
-            this.startPanel.Size = new System.Drawing.Size(248, 474);
-            this.startPanel.TabIndex = 0;
-            // 
-            // createNewBlueprintButton
-            // 
-            this.createNewBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.createNewBlueprintButton.Depth = 0;
-            this.createNewBlueprintButton.DrawShadows = true;
-            this.createNewBlueprintButton.HighEmphasis = true;
-            this.createNewBlueprintButton.Icon = null;
-            this.createNewBlueprintButton.Location = new System.Drawing.Point(21, 23);
-            this.createNewBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.createNewBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.createNewBlueprintButton.Name = "createNewBlueprintButton";
-            this.createNewBlueprintButton.Size = new System.Drawing.Size(207, 36);
-            this.createNewBlueprintButton.TabIndex = 0;
-            this.createNewBlueprintButton.Text = "    Create new Blueprint   ";
-            this.createNewBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.createNewBlueprintButton.UseAccentColor = false;
-            this.createNewBlueprintButton.UseVisualStyleBackColor = true;
-            this.createNewBlueprintButton.Click += new System.EventHandler(this.createNewBlueprintButton_Click);
-            // 
-            // loadExistingBlueprintButton
-            // 
-            this.loadExistingBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadExistingBlueprintButton.Depth = 0;
-            this.loadExistingBlueprintButton.DrawShadows = true;
-            this.loadExistingBlueprintButton.HighEmphasis = true;
-            this.loadExistingBlueprintButton.Icon = null;
-            this.loadExistingBlueprintButton.Location = new System.Drawing.Point(21, 81);
-            this.loadExistingBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.loadExistingBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.loadExistingBlueprintButton.Name = "loadExistingBlueprintButton";
-            this.loadExistingBlueprintButton.Size = new System.Drawing.Size(208, 36);
-            this.loadExistingBlueprintButton.TabIndex = 1;
-            this.loadExistingBlueprintButton.Text = "Load Existing Blueprint";
-            this.loadExistingBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.loadExistingBlueprintButton.UseAccentColor = false;
-            this.loadExistingBlueprintButton.UseVisualStyleBackColor = true;
-            this.loadExistingBlueprintButton.Click += new System.EventHandler(this.loadExistingBlueprintButton_Click);
+            this.quitButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.quitButton.Depth = 0;
+            this.quitButton.DrawShadows = true;
+            this.quitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.quitButton.HighEmphasis = false;
+            this.quitButton.Icon = null;
+            this.quitButton.Location = new System.Drawing.Point(21, 418);
+            this.quitButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.quitButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(207, 36);
+            this.quitButton.TabIndex = 2;
+            this.quitButton.Text = "                                           Quit                                  " +
+    "   \r\n\r\n";
+            this.quitButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.quitButton.UseAccentColor = false;
+            this.quitButton.UseVisualStyleBackColor = true;
+            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
             // 
             // IdiotTest
             // 
@@ -206,6 +229,7 @@ namespace Blueprintz
         private MaterialSkin.Controls.MaterialCard startPanel;
         private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
         private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
+        private MaterialSkin.Controls.MaterialButton quitButton;
     }
 }
 

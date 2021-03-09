@@ -47,19 +47,28 @@ namespace Blueprintz
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
         {
-            //TODO: Shorten filenames.
-            string tabTitle = "[FILENAME].[FILETYPE]";
+            string fileName = "TestfileNamethatIs to long";
+            string tabTitle = Utils.MiddleShortenTo(10, fileName) + ".blz";
             if (!MainControl.TabPages.Contains(Tabs.editorPage))
                 MainControl.TabPages.Add(Tabs.editorPage);
             if (MainControl.TabPages[1].Text != tabTitle)
                 Tabs.editorPage.Text = tabTitle;
             MainControl.SelectedTab = Tabs.editorPage;
         }
-        #endregion
 
         private void MainControl_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void quitButton_Click(object sender, EventArgs e)
+            => CloseDelayed();
+        #endregion
+
+        private async void CloseDelayed()
+        {
+            await Task.Delay(150);
+            Close();
         }
     }
  }

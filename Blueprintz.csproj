@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Style\ColorSchemes.cs" />
     <Compile Include="Style\Tabs.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>
