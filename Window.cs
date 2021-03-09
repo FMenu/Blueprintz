@@ -34,39 +34,37 @@ namespace Blueprintz
             new MaterialMessageBox(ColorSchemes.dark_3, title, lines, owner: this);
         }
 
-        private void CreateNewEditor(bool openFile)
+        private void CreateNewEditor()
         {
-            if (openFile)
-            {
-                string fileName = "coolest show ever";
-                string fileExtension = ".blz";
-                string tabTitle = Utils.MiddleShortenTo(10, fileName) + fileExtension;
-                if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                    MainControl.TabPages.Add(Tabs.editorPage);
-                if (MainControl.TabPages[1].Text != tabTitle)
-                    Tabs.editorPage.Text = tabTitle;
-                MainControl.SelectedTab = Tabs.editorPage;
-            }
-            else
-            {
-                if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                    MainControl.TabPages.Add(Tabs.editorPage);
-                if (MainControl.TabPages[1].Text != "New Blueprint")
-                    Tabs.editorPage.Text = "New Blueprint";
-                MainControl.SelectedTab = Tabs.editorPage;
-            }
+            if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                MainControl.TabPages.Add(Tabs.editorPage);
+            if (MainControl.TabPages[1].Text != "New Blueprint")
+                Tabs.editorPage.Text = "New Blueprint";
+            MainControl.SelectedTab = Tabs.editorPage;  
+        }
+
+        private void LoadEditor(string fileName, string fileExtension)
+        {
+            string tabTitle = Utils.MiddleShortenTo(10, fileName) + fileExtension;
+            if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                MainControl.TabPages.Add(Tabs.editorPage);
+            if (MainControl.TabPages[1].Text != tabTitle)
+                Tabs.editorPage.Text = tabTitle;
+            MainControl.SelectedTab = Tabs.editorPage;
         }
         #endregion
 
         #region Events
         private void createNewBlueprintButton_Click(object sender, EventArgs e)
         {
-            CreateNewEditor(false);
+            CreateNewEditor();
         }
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
         {
-            CreateNewEditor(true);
+            string fileName = "coolest show ever";
+            string fileExtension = ".blz";
+            LoadEditor(fileName, fileExtension);
         }
 
         private void MainControl_SelectedIndexChanged(object sender, EventArgs e)
