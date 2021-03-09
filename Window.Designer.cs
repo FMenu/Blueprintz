@@ -68,12 +68,12 @@ namespace Blueprintz
             this.MainControl.Controls.Add(this.editor);
             this.MainControl.Depth = 0;
             this.MainControl.ItemSize = new System.Drawing.Size(50, 18);
-            this.MainControl.Location = new System.Drawing.Point(0, 118);
+            this.MainControl.Location = new System.Drawing.Point(6, 118);
             this.MainControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.MainControl.Multiline = true;
             this.MainControl.Name = "MainControl";
             this.MainControl.SelectedIndex = 0;
-            this.MainControl.Size = new System.Drawing.Size(1201, 633);
+            this.MainControl.Size = new System.Drawing.Size(1188, 626);
             this.MainControl.TabIndex = 1;
             this.MainControl.SelectedIndexChanged += new System.EventHandler(this.MainControl_SelectedIndexChanged);
             // 
@@ -84,7 +84,7 @@ namespace Blueprintz
             this.start.Location = new System.Drawing.Point(4, 22);
             this.start.Name = "start";
             this.start.Padding = new System.Windows.Forms.Padding(3);
-            this.start.Size = new System.Drawing.Size(1193, 607);
+            this.start.Size = new System.Drawing.Size(1180, 600);
             this.start.TabIndex = 0;
             this.start.Text = "Start";
             this.start.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@ namespace Blueprintz
             this.startLabel.Depth = 0;
             this.startLabel.Font = new System.Drawing.Font("Roboto", 34F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.startLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            this.startLabel.Location = new System.Drawing.Point(560, 38);
+            this.startLabel.Location = new System.Drawing.Point(560, 35);
             this.startLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.startLabel.Name = "startLabel";
             this.startLabel.Size = new System.Drawing.Size(74, 41);
@@ -209,6 +209,7 @@ namespace Blueprintz
             this.ClientSize = new System.Drawing.Size(1200, 750);
             this.Controls.Add(this.MainControl);
             this.Controls.Add(this.MainTabSelector);
+            this.MinimumSize = new System.Drawing.Size(800, 750);
             this.Name = "Blueprintz";
             this.Text = "Blueprintz by FMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IdiotTest_FormClosing);
