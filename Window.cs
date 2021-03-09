@@ -33,27 +33,40 @@ namespace Blueprintz
         {
             new MaterialMessageBox(ColorSchemes.dark_3, title, lines, owner: this);
         }
+
+        private void CreateNewEditor(bool openFile)
+        {
+            if (openFile)
+            {
+                string fileName = "coolest show ever";
+                string fileExtension = ".blz";
+                string tabTitle = Utils.MiddleShortenTo(10, fileName) + fileExtension;
+                if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                    MainControl.TabPages.Add(Tabs.editorPage);
+                if (MainControl.TabPages[1].Text != tabTitle)
+                    Tabs.editorPage.Text = tabTitle;
+                MainControl.SelectedTab = Tabs.editorPage;
+            }
+            else
+            {
+                if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                    MainControl.TabPages.Add(Tabs.editorPage);
+                if (MainControl.TabPages[1].Text != "New Blueprint")
+                    Tabs.editorPage.Text = "New Blueprint";
+                MainControl.SelectedTab = Tabs.editorPage;
+            }
+        }
         #endregion
 
         #region Events
         private void createNewBlueprintButton_Click(object sender, EventArgs e)
         {
-            if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                MainControl.TabPages.Add(Tabs.editorPage);
-            if (MainControl.TabPages[1].Text != "New Blueprint")
-                Tabs.editorPage.Text = "New Blueprint";
-            MainControl.SelectedTab = Tabs.editorPage;
+            CreateNewEditor(false);
         }
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
         {
-            string fileName = "TestfileNamethatIs to long";
-            string tabTitle = Utils.MiddleShortenTo(10, fileName) + ".blz";
-            if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                MainControl.TabPages.Add(Tabs.editorPage);
-            if (MainControl.TabPages[1].Text != tabTitle)
-                Tabs.editorPage.Text = tabTitle;
-            MainControl.SelectedTab = Tabs.editorPage;
+            CreateNewEditor(true);
         }
 
         private void MainControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,7 +80,7 @@ namespace Blueprintz
 
         private async void CloseDelayed()
         {
-            await Task.Delay(150);
+            await Task.Delay(250);
             Close();
         }
     }
