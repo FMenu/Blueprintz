@@ -34,11 +34,11 @@ namespace Blueprintz
             this.start = new System.Windows.Forms.TabPage();
             this.startBorder = new MaterialSkin.Controls.MaterialCard();
             this.startPanel = new MaterialSkin.Controls.MaterialCard();
+            this.quitButton = new MaterialSkin.Controls.MaterialButton();
             this.loadExistingBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
-            this.quitButton = new MaterialSkin.Controls.MaterialButton();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
@@ -116,6 +116,27 @@ namespace Blueprintz
             this.startPanel.Size = new System.Drawing.Size(248, 474);
             this.startPanel.TabIndex = 0;
             // 
+            // quitButton
+            // 
+            this.quitButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.quitButton.Depth = 0;
+            this.quitButton.DrawShadows = true;
+            this.quitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.quitButton.HighEmphasis = false;
+            this.quitButton.Icon = null;
+            this.quitButton.Location = new System.Drawing.Point(21, 418);
+            this.quitButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.quitButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(207, 36);
+            this.quitButton.TabIndex = 2;
+            this.quitButton.Text = "                                           Quit                                  " +
+    "   \r\n\r\n";
+            this.quitButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.quitButton.UseAccentColor = false;
+            this.quitButton.UseVisualStyleBackColor = true;
+            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
+            // 
             // loadExistingBlueprintButton
             // 
             this.loadExistingBlueprintButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -177,27 +198,6 @@ namespace Blueprintz
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
             // 
-            // quitButton
-            // 
-            this.quitButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.quitButton.Depth = 0;
-            this.quitButton.DrawShadows = true;
-            this.quitButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.quitButton.HighEmphasis = false;
-            this.quitButton.Icon = null;
-            this.quitButton.Location = new System.Drawing.Point(21, 418);
-            this.quitButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.quitButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.quitButton.Name = "quitButton";
-            this.quitButton.Size = new System.Drawing.Size(207, 36);
-            this.quitButton.TabIndex = 2;
-            this.quitButton.Text = "                                           Quit                                  " +
-    "   \r\n\r\n";
-            this.quitButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.quitButton.UseAccentColor = false;
-            this.quitButton.UseVisualStyleBackColor = true;
-            this.quitButton.Click += new System.EventHandler(this.quitButton_Click);
-            // 
             // IdiotTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +207,7 @@ namespace Blueprintz
             this.Controls.Add(this.MainTabSelector);
             this.Name = "IdiotTest";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IdiotTest_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainControl.ResumeLayout(false);
             this.start.ResumeLayout(false);
@@ -221,7 +222,7 @@ namespace Blueprintz
         #endregion
 
         private MaterialSkin.Controls.MaterialTabSelector MainTabSelector;
-        private MaterialSkin.Controls.MaterialTabControl MainControl;
+        public MaterialSkin.Controls.MaterialTabControl MainControl;
         private System.Windows.Forms.TabPage start;
         private System.Windows.Forms.TabPage editor;
         private MaterialSkin.Controls.MaterialLabel startLabel;
