@@ -10,9 +10,9 @@ namespace Blueprintz.Editor
 {
     class EditorTabHandler
     {
-        private IdiotTest window;
+        private Blueprintz window;
 
-        public EditorTabHandler(IdiotTest window)
+        public EditorTabHandler(Blueprintz window)
         {
             this.window = window;
         }

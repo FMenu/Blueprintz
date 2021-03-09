@@ -1,7 +1,7 @@
 ﻿
 namespace Blueprintz
 {
-    partial class IdiotTest
+    partial class Blueprintz
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -39,7 +39,6 @@ namespace Blueprintz
             this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
-            this.preferencesButton = new MaterialSkin.Controls.MaterialButton();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
@@ -62,6 +61,9 @@ namespace Blueprintz
             // 
             // MainControl
             // 
+            this.MainControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainControl.Controls.Add(this.start);
             this.MainControl.Controls.Add(this.editor);
             this.MainControl.Depth = 0;
@@ -77,7 +79,6 @@ namespace Blueprintz
             // 
             // start
             // 
-            this.start.Controls.Add(this.preferencesButton);
             this.start.Controls.Add(this.startBorder);
             this.start.Controls.Add(this.startLabel);
             this.start.Location = new System.Drawing.Point(4, 22);
@@ -201,35 +202,18 @@ namespace Blueprintz
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
             // 
-            // preferencesButton
-            // 
-            this.preferencesButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.preferencesButton.Depth = 0;
-            this.preferencesButton.DrawShadows = true;
-            this.preferencesButton.HighEmphasis = false;
-            this.preferencesButton.Icon = null;
-            this.preferencesButton.Location = new System.Drawing.Point(1007, 562);
-            this.preferencesButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.preferencesButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.preferencesButton.Name = "preferencesButton";
-            this.preferencesButton.Size = new System.Drawing.Size(149, 36);
-            this.preferencesButton.TabIndex = 2;
-            this.preferencesButton.Text = "        Preferences        ";
-            this.preferencesButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.preferencesButton.UseAccentColor = false;
-            this.preferencesButton.UseVisualStyleBackColor = true;
-            // 
-            // IdiotTest
+            // Blueprintz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 750);
             this.Controls.Add(this.MainControl);
             this.Controls.Add(this.MainTabSelector);
-            this.Name = "IdiotTest";
-            this.Text = "Form1";
+            this.Name = "Blueprintz";
+            this.Text = "Blueprintz by FMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IdiotTest_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.IdiotTest_Resize);
             this.MainControl.ResumeLayout(false);
             this.start.ResumeLayout(false);
             this.start.PerformLayout();
@@ -252,7 +236,6 @@ namespace Blueprintz
         private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
         private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
         private MaterialSkin.Controls.MaterialButton quitButton;
-        private MaterialSkin.Controls.MaterialButton preferencesButton;
     }
 }
 

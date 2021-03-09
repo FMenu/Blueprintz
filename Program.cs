@@ -16,7 +16,7 @@ namespace Blueprintz
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new IdiotTest());
+            Application.Run(new Blueprintz());
         }
     }
 }
