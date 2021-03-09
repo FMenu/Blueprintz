@@ -1,4 +1,4 @@
-name: Build Web App
+name: Build WPF Application
  
 on:
   pull_request:
