@@ -9,19 +9,23 @@ namespace Blueprintz
     public partial class IdiotTest : MaterialForm
     {
         private readonly MaterialSkinManager materialSkin = MaterialSkinManager.Instance;
+
         public IdiotTest()
         {
+            //Init UI
             InitializeComponent();
             InitializeMaterialSkin();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Save Page an Remove it.
             Tabs.editorPage = MainControl.TabPages[1];
             MainControl.TabPages.Remove(Tabs.editorPage);
         }
 
         #region Other
+        // Initialize the look of the Form.
         private void InitializeMaterialSkin()
         {
             materialSkin.AddFormToManage(this);
@@ -29,6 +33,7 @@ namespace Blueprintz
             materialSkin.ColorScheme = ColorSchemes.dark_3;
         }
 
+        // Show Material Messagebox
         private void ShowMsg(string title, string[] lines)
         {
             new MaterialMessageBox(ColorSchemes.dark_3, title, lines, owner: this);
@@ -39,13 +44,17 @@ namespace Blueprintz
         #region Events
         private void createNewBlueprintButton_Click(object sender, EventArgs e)
         {
+            // Create a new Editor.
             CreateNewEditor();
         }
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
         {
+            // This is just for testing purposes
             string fileName = "coolest show ever";
             string fileExtension = ".blz";
+
+            // Load Tab
             LoadEditor(fileName, fileExtension);
         }
 
@@ -91,6 +100,7 @@ namespace Blueprintz
         }
         #endregion
 
+        // Wait for animation to finish, because it looks better.
         private async void CloseDelayed()
         {
             await Task.Delay(250);
