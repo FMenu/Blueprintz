@@ -39,6 +39,7 @@ namespace Blueprintz
             this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
+            this.preferencesButton = new MaterialSkin.Controls.MaterialButton();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
@@ -76,6 +77,7 @@ namespace Blueprintz
             // 
             // start
             // 
+            this.start.Controls.Add(this.preferencesButton);
             this.start.Controls.Add(this.startBorder);
             this.start.Controls.Add(this.startLabel);
             this.start.Location = new System.Drawing.Point(4, 22);
@@ -177,6 +179,7 @@ namespace Blueprintz
             // 
             // startLabel
             // 
+            this.startLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.startLabel.AutoSize = true;
             this.startLabel.Depth = 0;
             this.startLabel.Font = new System.Drawing.Font("Roboto", 34F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
@@ -197,6 +200,24 @@ namespace Blueprintz
             this.editor.TabIndex = 1;
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
+            // 
+            // preferencesButton
+            // 
+            this.preferencesButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.preferencesButton.Depth = 0;
+            this.preferencesButton.DrawShadows = true;
+            this.preferencesButton.HighEmphasis = false;
+            this.preferencesButton.Icon = null;
+            this.preferencesButton.Location = new System.Drawing.Point(1007, 562);
+            this.preferencesButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.preferencesButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.preferencesButton.Name = "preferencesButton";
+            this.preferencesButton.Size = new System.Drawing.Size(149, 36);
+            this.preferencesButton.TabIndex = 2;
+            this.preferencesButton.Text = "        Preferences        ";
+            this.preferencesButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.preferencesButton.UseAccentColor = false;
+            this.preferencesButton.UseVisualStyleBackColor = true;
             // 
             // IdiotTest
             // 
@@ -231,6 +252,7 @@ namespace Blueprintz
         private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
         private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
         private MaterialSkin.Controls.MaterialButton quitButton;
+        private MaterialSkin.Controls.MaterialButton preferencesButton;
     }
 }
 
