@@ -1,4 +1,4 @@
-<div align="center" id="top"><p><a href="https://app.codacy.com/gh/FMenu/Blueprintz/dashboard"><img src="https://img.shields.io/codacy/grade/1a76cd48727846d7804203b3f7ff66ed?style=flat-square"></a>
+<div align="center" id="top"><p><a href="https://app.codacy.com/gh/FMenu/Blueprintz/dashboard"><img src="https://img.shields.io/codacy/grade/3317895a6f264bbdbb33189306639af5?style=flat-square"></a>
     <a href="https://github.com/krishdevdb/reseter.css/commits/master"><img src="https://img.shields.io/github/last-commit/FMenu/Blueprintz?style=flat-square"></a>
     <a href="#status"><img src="https://img.shields.io/badge/Maintained-yes-green.svg?style=flat-square"></a></p><img height="100px" width="100px" src="./logo.png">
   <br><h1>Blueprintz by FMenu</h1><h5>A easy to use blueprint creator for Fireworks Mania</h5><a href="https://twitter.com/intent/tweet?url=https://github.com/FMenu/Blueprintz&amp;text=An%20Amazing%20Blueprint%20Creator%20For%20FireworksMania.%20Make%20Sure%20To%20Check%20It%20Out">
