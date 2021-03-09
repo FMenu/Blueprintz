@@ -34,24 +34,6 @@ namespace Blueprintz
             new MaterialMessageBox(ColorSchemes.dark_3, title, lines, owner: this);
         }
 
-        private void CreateNewEditor()
-        {
-            if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                MainControl.TabPages.Add(Tabs.editorPage);
-            if (MainControl.TabPages[1].Text != "New Blueprint")
-                Tabs.editorPage.Text = "New Blueprint";
-            MainControl.SelectedTab = Tabs.editorPage;  
-        }
-
-        private void LoadEditor(string fileName, string fileExtension)
-        {
-            string tabTitle = Utils.MiddleShortenTo(10, fileName) + fileExtension;
-            if (!MainControl.TabPages.Contains(Tabs.editorPage))
-                MainControl.TabPages.Add(Tabs.editorPage);
-            if (MainControl.TabPages[1].Text != tabTitle)
-                Tabs.editorPage.Text = tabTitle;
-            MainControl.SelectedTab = Tabs.editorPage;
-        }
         #endregion
 
         #region Events
@@ -74,6 +56,39 @@ namespace Blueprintz
 
         private void quitButton_Click(object sender, EventArgs e)
             => CloseDelayed();
+        #endregion
+
+        #region Editor
+        private void CreateNewEditor()
+        {
+            // Add Page if it doesn't already exist
+            if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                MainControl.TabPages.Add(Tabs.editorPage);
+
+            // Change Tab title
+            if (MainControl.TabPages[1].Text != "New Blueprint")
+                Tabs.editorPage.Text = "New Blueprint";
+
+            // Open Tab
+            MainControl.SelectedTab = Tabs.editorPage;
+        }
+
+        private void LoadEditor(string fileName, string fileExtension)
+        {
+            // Create string to display as Tab name.
+            string tabTitle = Utils.MiddleShortenTo(10, fileName) + fileExtension;
+
+            // Add Page if it doesn't already exist
+            if (!MainControl.TabPages.Contains(Tabs.editorPage))
+                MainControl.TabPages.Add(Tabs.editorPage);
+
+            // Change Tab title
+            if (MainControl.TabPages[1].Text != tabTitle)
+                Tabs.editorPage.Text = tabTitle;
+
+            // Open Tab
+            MainControl.SelectedTab = Tabs.editorPage;
+        }
         #endregion
 
         private async void CloseDelayed()
