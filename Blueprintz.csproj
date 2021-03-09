@@ -52,11 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Style\ColorSchemes.cs" />
+    <Compile Include="Style\MultichoiceMaterialMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Style\Tabs.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Window.cs">
