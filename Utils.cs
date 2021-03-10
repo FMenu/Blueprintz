@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,5 +23,11 @@ namespace Blueprintz
                 return text.Substring(0, caracters - 3) + "...";
             else return text;
         }
+
+        public static Size DivideSize(Size arg1, int divider) =>
+            new Size(arg1.Width / divider, arg1.Height / divider);
+
+        public static Size SubstractSize(Size arg1, Size arg2) =>
+            new Size(arg1.Width - arg2.Width, arg1.Height - arg2.Height);
     }
 }

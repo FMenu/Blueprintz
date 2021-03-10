@@ -5,15 +5,17 @@ using Blueprintz.Style;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Blueprintz.Editor;
+using System.Drawing;
 
 namespace Blueprintz
 {
-    public partial class IdiotTest : MaterialForm
+    public partial class Blueprintz : MaterialForm
     {
         private readonly MaterialSkinManager materialSkin = MaterialSkinManager.Instance;
         private readonly EditorTabHandler tabHandler = null;
+        public EditorCanvas editorCancas = null;
 
-        public IdiotTest()
+        public Blueprintz()
         {
             //Init UI
             InitializeComponent();
@@ -50,8 +52,14 @@ namespace Blueprintz
         #region Events
         private void createNewBlueprintButton_Click(object sender, EventArgs e)
         {
-            // Create a new Editor.
-            tabHandler.CreateNewEditor();
+            // Load Json File
+
+            // This is just for testing purposes
+            string fileName = "coolest show ever";
+            string fileExtension = ".json";
+
+            // Load Tab
+            tabHandler.LoadEditor(fileName, fileExtension);
         }
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
@@ -69,14 +77,32 @@ namespace Blueprintz
 
         }
 
-        private void quitButton_Click(object sender, EventArgs e)
-            => CloseDelayed();
+        private void quitButton_Click(object sender, EventArgs e) => CloseDelayed();
+
+        private void IdiotTest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void IdiotTest_Resize(object sender, EventArgs e)
+        {
+            // Resize Start panel
+            Size size = Utils.SubstractSize(Utils.DivideSize(Size, 2), Utils.DivideSize(startBorder.Size, 2));
+            startBorder.Location = new Point(size.Width, size.Height - 40);
+
+            // Resize Start label
+            Size size_ = Utils.SubstractSize(Utils.DivideSize(Size, 2), Utils.DivideSize(startLabel.Size, 2));
+            startLabel.Location = new Point(size_.Width, size_.Height - 320);
+        }
         #endregion
 
         // Wait for animation to finish, because it looks better.
         private async void CloseDelayed()
         {
+            // Delay
             await Task.Delay(250);
+
+            // "Don't forget to save" message
             if (!Tabs.recentlySaved)
                 new MultichoiceMaterialMessageBox(ColorSchemes.dark_3, "Don't forget to save!",
                     new string[2] { "Don't forget to save your work!", "Do you want to save it now?" },
@@ -86,19 +112,14 @@ namespace Blueprintz
 
         private void CloseCallback(DialogResult result)
         {
-            if (result == DialogResult.No) Close();
+            if (result == DialogResult.No) CloseDelayed();
             else if (result == DialogResult.Yes)
             {
                 // Save
                 Tabs.recentlySaved = true;
 
-                Close();
+                CloseDelayed();
             }
-        }
-
-        private void IdiotTest_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
  }

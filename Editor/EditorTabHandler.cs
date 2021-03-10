@@ -10,16 +10,16 @@ namespace Blueprintz.Editor
 {
     class EditorTabHandler
     {
-        private IdiotTest window;
+        private Blueprintz window;
 
-        public EditorTabHandler(IdiotTest window)
+        public EditorTabHandler(Blueprintz window)
         {
             this.window = window;
         }
 
-        // TODO: put all of this into it's own file.
         // TODO: Add save dialog where save is in the Editor section.
         #region Editor
+        /*
         public void CreateNewEditor()
         {
             if (!Tabs.recentlySaved)
@@ -27,7 +27,7 @@ namespace Blueprintz.Editor
                     new string[2] { "Don't forget to save your work!", "Do you want to save it now?" },
                     true, CreateNewEditorCallback, window);
             else CreateNewEditorCallback(DialogResult.No);
-        }
+        }*/
 
         public void LoadEditor(string fileName, string fileExtension)
         {
@@ -65,6 +65,9 @@ namespace Blueprintz.Editor
 
                 // Open Tab
                 window.MainControl.SelectedTab = Tabs.editorPage;
+
+                // Create new Canvas
+                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             else if (result == DialogResult.Yes)
             {
@@ -88,10 +91,14 @@ namespace Blueprintz.Editor
 
                 // Open Tab
                 window.MainControl.SelectedTab = Tabs.editorPage;
+
+                // Create new Canvas
+                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             Tabs.tabName = "";
         }
 
+        /*
         private void CreateNewEditorCallback(DialogResult result)
         {
             if (result == DialogResult.No)
@@ -131,7 +138,7 @@ namespace Blueprintz.Editor
                 window.MainControl.SelectedTab = Tabs.editorPage;
             }
             Tabs.tabName = "";
-        }
+        }*/
         #endregion
     }
 }
