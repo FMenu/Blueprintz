@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Blueprintz.Editor
@@ -10,12 +8,23 @@ namespace Blueprintz.Editor
     public class EditorCanvas
     {
         private PictureBox canvas;
+        private double uuip = 0;
+
+        public const float mapSizeX = 4f;
+
         public EditorCanvas(PictureBox pb)
         {
             canvas = pb;
+            uuip = GetUnityUnitAsPixels(mapSizeX, canvas.Width);
         }
 
-        private int GetUnityUnitAsPixels(int mapSizeInUnityUnits, int imageSizeInPixels)
+        private double GetUnityUnitAsPixels(double mapSizeInUnityUnits, int imageSizeInPixels)
             => imageSizeInPixels / mapSizeInUnityUnits;
+
+        public void Zoom(double zoomFactor)
+        {
+            uuip *= zoomFactor;
+            
+        }
     }
 }
