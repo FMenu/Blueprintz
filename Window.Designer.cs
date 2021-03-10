@@ -29,6 +29,7 @@ namespace Blueprintz
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Blueprintz));
             this.MainTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.MainControl = new MaterialSkin.Controls.MaterialTabControl();
             this.start = new System.Windows.Forms.TabPage();
@@ -39,13 +40,13 @@ namespace Blueprintz
             this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.editorBox = new System.Windows.Forms.PictureBox();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
             this.startPanel.SuspendLayout();
             this.editor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editorBox)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabSelector
@@ -197,7 +198,7 @@ namespace Blueprintz
             // 
             // editor
             // 
-            this.editor.Controls.Add(this.pictureBox1);
+            this.editor.Controls.Add(this.editorBox);
             this.editor.Location = new System.Drawing.Point(4, 22);
             this.editor.Name = "editor";
             this.editor.Padding = new System.Windows.Forms.Padding(3);
@@ -206,13 +207,14 @@ namespace Blueprintz
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // editorBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(216, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(763, 587);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.editorBox.Image = ((System.Drawing.Image)(resources.GetObject("editorBox.Image")));
+            this.editorBox.Location = new System.Drawing.Point(192, 7);
+            this.editorBox.Name = "editorBox";
+            this.editorBox.Size = new System.Drawing.Size(805, 587);
+            this.editorBox.TabIndex = 0;
+            this.editorBox.TabStop = false;
             // 
             // Blueprintz
             // 
@@ -234,7 +236,7 @@ namespace Blueprintz
             this.startPanel.ResumeLayout(false);
             this.startPanel.PerformLayout();
             this.editor.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editorBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -251,7 +253,7 @@ namespace Blueprintz
         private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
         private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
         private MaterialSkin.Controls.MaterialButton quitButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox editorBox;
     }
 }
 

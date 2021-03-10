@@ -17,7 +17,6 @@ namespace Blueprintz.Editor
             this.window = window;
         }
 
-        // TODO: put all of this into it's own file.
         // TODO: Add save dialog where save is in the Editor section.
         #region Editor
         /*
@@ -66,6 +65,9 @@ namespace Blueprintz.Editor
 
                 // Open Tab
                 window.MainControl.SelectedTab = Tabs.editorPage;
+
+                // Create new Canvas
+                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             else if (result == DialogResult.Yes)
             {
@@ -89,6 +91,9 @@ namespace Blueprintz.Editor
 
                 // Open Tab
                 window.MainControl.SelectedTab = Tabs.editorPage;
+
+                // Create new Canvas
+                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             Tabs.tabName = "";
         }
