@@ -39,10 +39,13 @@ namespace Blueprintz
             this.createNewBlueprintButton = new MaterialSkin.Controls.MaterialButton();
             this.startLabel = new MaterialSkin.Controls.MaterialLabel();
             this.editor = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MainControl.SuspendLayout();
             this.start.SuspendLayout();
             this.startBorder.SuspendLayout();
             this.startPanel.SuspendLayout();
+            this.editor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainTabSelector
@@ -147,13 +150,13 @@ namespace Blueprintz
             this.loadExistingBlueprintButton.DrawShadows = true;
             this.loadExistingBlueprintButton.HighEmphasis = true;
             this.loadExistingBlueprintButton.Icon = null;
-            this.loadExistingBlueprintButton.Location = new System.Drawing.Point(21, 81);
+            this.loadExistingBlueprintButton.Location = new System.Drawing.Point(21, 78);
             this.loadExistingBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.loadExistingBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.loadExistingBlueprintButton.Name = "loadExistingBlueprintButton";
-            this.loadExistingBlueprintButton.Size = new System.Drawing.Size(208, 36);
+            this.loadExistingBlueprintButton.Size = new System.Drawing.Size(207, 36);
             this.loadExistingBlueprintButton.TabIndex = 1;
-            this.loadExistingBlueprintButton.Text = "Load Existing Blueprint";
+            this.loadExistingBlueprintButton.Text = "       Load Blueprintz File       ";
             this.loadExistingBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.loadExistingBlueprintButton.UseAccentColor = false;
             this.loadExistingBlueprintButton.UseVisualStyleBackColor = true;
@@ -166,13 +169,13 @@ namespace Blueprintz
             this.createNewBlueprintButton.DrawShadows = true;
             this.createNewBlueprintButton.HighEmphasis = true;
             this.createNewBlueprintButton.Icon = null;
-            this.createNewBlueprintButton.Location = new System.Drawing.Point(21, 23);
+            this.createNewBlueprintButton.Location = new System.Drawing.Point(21, 20);
             this.createNewBlueprintButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.createNewBlueprintButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.createNewBlueprintButton.Name = "createNewBlueprintButton";
             this.createNewBlueprintButton.Size = new System.Drawing.Size(207, 36);
             this.createNewBlueprintButton.TabIndex = 0;
-            this.createNewBlueprintButton.Text = "    Create new Blueprint   ";
+            this.createNewBlueprintButton.Text = "              Import Blueprint              ";
             this.createNewBlueprintButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.createNewBlueprintButton.UseAccentColor = false;
             this.createNewBlueprintButton.UseVisualStyleBackColor = true;
@@ -194,13 +197,22 @@ namespace Blueprintz
             // 
             // editor
             // 
+            this.editor.Controls.Add(this.pictureBox1);
             this.editor.Location = new System.Drawing.Point(4, 22);
             this.editor.Name = "editor";
             this.editor.Padding = new System.Windows.Forms.Padding(3);
-            this.editor.Size = new System.Drawing.Size(1193, 607);
+            this.editor.Size = new System.Drawing.Size(1180, 600);
             this.editor.TabIndex = 1;
             this.editor.Text = "Editor";
             this.editor.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(216, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(763, 587);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Blueprintz
             // 
@@ -221,6 +233,8 @@ namespace Blueprintz
             this.startBorder.ResumeLayout(false);
             this.startPanel.ResumeLayout(false);
             this.startPanel.PerformLayout();
+            this.editor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -237,6 +251,7 @@ namespace Blueprintz
         private MaterialSkin.Controls.MaterialButton createNewBlueprintButton;
         private MaterialSkin.Controls.MaterialButton loadExistingBlueprintButton;
         private MaterialSkin.Controls.MaterialButton quitButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

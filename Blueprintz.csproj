@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
       <SubType>Form</SubType>

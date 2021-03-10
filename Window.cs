@@ -51,8 +51,14 @@ namespace Blueprintz
         #region Events
         private void createNewBlueprintButton_Click(object sender, EventArgs e)
         {
-            // Create a new Editor.
-            tabHandler.CreateNewEditor();
+            // Load Json File
+
+            // This is just for testing purposes
+            string fileName = "coolest show ever";
+            string fileExtension = ".json";
+
+            // Load Tab
+            tabHandler.LoadEditor(fileName, fileExtension);
         }
 
         private void loadExistingBlueprintButton_Click(object sender, EventArgs e)
