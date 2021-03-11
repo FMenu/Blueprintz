@@ -9,7 +9,7 @@ namespace Blueprintz.Encoding
         protected string rawJson = "";
         protected string json = "";
 
-        public void Encode(SaveFile properties)
+        public void Encode(JsonStructure properties)
         {
             rawJson = JsonConvert.SerializeObject(properties, Formatting.None);
             json = JsonConvert.SerializeObject(properties, Formatting.Indented);
