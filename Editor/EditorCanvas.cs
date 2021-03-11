@@ -62,9 +62,11 @@ namespace Blueprintz.Editor
             Bitmap tempBitmap = new Bitmap(img.Width, img.Height);
 
             // Calculate bounds
-            float x = img.Width * zoomFactor;
-            float y = img.Height * zoomFactor;
-            RectangleF desRect = new RectangleF(0, 0, x, y);
+            float width = img.Width * zoomFactor;
+            float height = img.Height * zoomFactor;
+            float x = img.Width / 2 - width / 2;
+            float y = img.Height / 2 - height / 2;
+            RectangleF desRect = new RectangleF(x, y, width, height);
             RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
 
             // Resize image

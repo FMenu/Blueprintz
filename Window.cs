@@ -112,7 +112,11 @@ namespace Blueprintz
 
         private void CloseCallback(DialogResult result)
         {
-            if (result == DialogResult.No) CloseDelayed();
+            if (result == DialogResult.No)
+            {
+                Tabs.recentlySaved = true;
+                CloseDelayed();
+            }
             else if (result == DialogResult.Yes)
             {
                 // Save
