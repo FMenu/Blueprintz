@@ -75,6 +75,7 @@ namespace Blueprintz.Editor
             graphics.Dispose();
 
             // Apply image
+            canvas.Image.Dispose();
             canvas.Image = tempBitmap;
         }
     }

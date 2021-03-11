@@ -29,5 +29,17 @@ namespace Blueprintz
 
         public static Size SubstractSize(Size arg1, Size arg2) =>
             new Size(arg1.Width - arg2.Width, arg1.Height - arg2.Height);
+
+        public static GarbageCollector GarbageCollection { get; } = new GarbageCollector();
+
+        public class GarbageCollector
+        {
+            public GarbageCollector() { }
+            public static void Collect()
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace Blueprintz
     {
         private readonly MaterialSkinManager materialSkin = MaterialSkinManager.Instance;
         private readonly EditorTabHandler tabHandler = null;
+
         public EditorCanvas editorCancas = null;
 
         public Blueprintz()
@@ -96,6 +97,7 @@ namespace Blueprintz
         }
         #endregion
 
+        #region Close
         // Wait for animation to finish, because it looks better.
         private async void CloseDelayed()
         {
@@ -125,5 +127,6 @@ namespace Blueprintz
                 CloseDelayed();
             }
         }
+        #endregion
     }
- }
+}
