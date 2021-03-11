@@ -36,6 +36,14 @@
     <Reference Include="DarkUI, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\DarkUI.2.0.2\lib\DarkUI.dll</HintPath>
     </Reference>
+    <Reference Include="JumpinFrog.ProcessChecker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\JumpinFrog.ProcessChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="JumpinFrog.Vectors, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\JumpinFrog.Vectors.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialSkin.2.2.1.4\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
@@ -55,10 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debugging\Console.cs" />
+    <Compile Include="Debugging\Logger.cs" />
     <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
+    <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
-    <Compile Include="Json\SaveFile.cs" />
+    <Compile Include="Json\JsonStructure.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>

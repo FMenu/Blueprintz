@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Blueprintz.Editor;
 using System.Drawing;
+using Blueprintz.Debugging;
 
 namespace Blueprintz
 {
@@ -13,6 +14,8 @@ namespace Blueprintz
     {
         private readonly MaterialSkinManager materialSkin = MaterialSkinManager.Instance;
         private readonly EditorTabHandler tabHandler = null;
+
+        public static readonly Logger logger = Logger.defaultLogger;
 
         public EditorCanvas editorCancas = null;
 
