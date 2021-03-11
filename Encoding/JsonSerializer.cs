@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Blueprintz.Json;
+using Blueprintz.Save;
 using Newtonsoft.Json;
 
 namespace Blueprintz.Encoding
@@ -9,7 +9,7 @@ namespace Blueprintz.Encoding
         protected string rawJson = "";
         protected string json = "";
 
-        public void Encode(JsonSaveFileStructure properties)
+        public void Encode(SaveFile properties)
         {
             rawJson = JsonConvert.SerializeObject(properties, Formatting.None);
             json = JsonConvert.SerializeObject(properties, Formatting.Indented);
