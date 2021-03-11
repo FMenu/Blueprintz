@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 
 namespace Blueprintz.Encoding
 {
-    public class JsonEncoder
+    public class JsonSerializer<T>
     {
         protected string rawJson = "";
         protected string json = "";
 
-        public void Encode(JsonStructure properties)
+        public void Encode(T properties)
         {
             rawJson = JsonConvert.SerializeObject(properties, Formatting.None);
             json = JsonConvert.SerializeObject(properties, Formatting.Indented);

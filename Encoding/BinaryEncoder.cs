@@ -1,33 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 using System.IO;
 
-namespace Blueprintz.Encoding {
-    public class BinaryEncoder : IDisposable
+namespace Blueprintz.Encoding
+{
+    public static class BinaryEncoder
     {
-        public List<string> items = new List<string>();
-
-        public void Write(string value) => items.Add(value);
-        public void Write(bool value) => items.Add(value.ToString());
-        public void Write(int value) => items.Add(value.ToString());
-        public void Write(float value) => items.Add(value.ToString());
-        public void Write(double value) => items.Add(value.ToString());
-        public void Write(decimal value) => items.Add(value.ToString());
-        public void Write(uint value) => items.Add(value.ToString());
-
-        public int GetFileIndex(string item)
+        public static string EncodeFromJson(string json)
         {
-            for (int i = 0; i < items.Count; i++)
-                if (items[i] == item) return i;
-            return -1;
+            var obj = JsonConvert.DeserializeObject(json);
+            JsonSerializer serializer = new JsonSerializer();
+            MemoryStream stream = new MemoryStream();
+            BsonWriter writer = new BsonWriter(stream);
+            serializer.Serialize(writer, obj);
+            return System.Text.Encoding.ASCII.GetString(stream.ToArray());
         }
 
-        public void WriteToFile(string path)
+        public static void CopyTo(Stream src, Stream dest)
         {
-            BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create));
-            foreach (string item in items) writer.Write(item);
+            byte[] bytes = new byte[4096];
+
+            int cnt;
+
+            while ((cnt = src.Read(bytes, 0, bytes.Length)) != 0)
+            {
+                dest.Write(bytes, 0, cnt);
+            }
         }
 
-        public void Dispose() => items.Clear();
+        public static byte[] Zip(string str)
+        {
+            var bytes = Encoding.UTF8.GetBytes(str);
+
+            using (var msi = new MemoryStream(bytes))
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(mso, CompressionMode.Compress))
+                {
+                    //msi.CopyTo(gs);
+                    CopyTo(msi, gs);
+                }
+
+                return mso.ToArray();
+            }
+        }
+
+        public static string Unzip(byte[] bytes)
+        {
+            using (var msi = new MemoryStream(bytes))
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                {
+                    //gs.CopyTo(mso);
+                    CopyTo(gs, mso);
+                }
+
+                return Encoding.UTF8.GetString(mso.ToArray());
+            }
+        }
     }
 }
