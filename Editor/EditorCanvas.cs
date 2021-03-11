@@ -17,6 +17,8 @@ namespace Blueprintz.Editor
         private float zoom = 1;
         private bool mouseGrabbing = false;
 
+        private Vector2 mouseDragPos = new Vector2(0, 0);
+
         public const float mapSizeX = 4f;
 
         public EditorCanvas(PictureBox pb, MaterialTabControl tabC)
@@ -37,7 +39,14 @@ namespace Blueprintz.Editor
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseGrabbing)
-                Blueprintz.logger.Info("X: " + e.X.ToString() + "Y: " + e.Y.ToString());
+            {
+                // Calculate normalized Mouse Position
+                mouseDragPos.x = (float)e.X / canvas.Size.Width;
+                mouseDragPos.y = (float)e.Y / canvas.Size.Height;
+
+                // Output Mouse pos
+                Blueprintz.logger.Info("X: " + mouseDragPos.x + " Y: " + mouseDragPos.y);
+            }
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e) => mouseGrabbing = false;
