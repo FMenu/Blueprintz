@@ -63,8 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debugging\Console.cs" />
-    <Compile Include="Debugging\Logger.cs" />
     <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
     <Compile Include="Encoding\BinaryEncoder.cs" />
@@ -117,6 +115,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Blueprintz.Encoding\Blueprintz.Encoding.csproj">
+      <Project>{07b06397-af0c-4dd2-837e-d2844eeae517}</Project>
+      <Name>Blueprintz.Encoding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JumpinFrog.Logging\JumpinFrog.Logging.csproj">
+      <Project>{30d816e4-1e1f-4869-aed0-2492247f7bc3}</Project>
+      <Name>JumpinFrog.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

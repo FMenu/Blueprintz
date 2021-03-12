@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Blueprintz.Editor;
 using System.Drawing;
-using Blueprintz.Debugging;
-using Blueprintz.Encoding;
+using JumpinFrog.Logging;
 
 namespace Blueprintz
 {

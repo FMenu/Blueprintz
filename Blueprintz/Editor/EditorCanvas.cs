@@ -1,5 +1,4 @@
-﻿using Blueprintz.Debugging;
-using Blueprintz.Style;
+﻿using Blueprintz.Style;
 using JumpinFrog.Vectors;
 using MaterialSkin.Controls;
 using System.Drawing;
