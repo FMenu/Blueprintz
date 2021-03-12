@@ -16,8 +16,11 @@ namespace Blueprintz.Editor
 
         private float zoom = 1;
         private bool mouseGrabbing = false;
+        private MouseButtons mouseButtons = MouseButtons.None;
 
-        private Vector2 mouseDragPos = new Vector2(0, 0);
+        private Vector2 mouseDragPos = Vector2.zero;
+        private Vector2 oldPos = Vector2.zero;
+        private Vector2 offset = Vector2.zero;
 
         public const float mapSizeX = 4f;
 
@@ -38,19 +41,42 @@ namespace Blueprintz.Editor
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseGrabbing)
+            if (mouseGrabbing && mouseButtons == MouseButtons.Left)
             {
+
                 // Calculate normalized Mouse Position
                 mouseDragPos.x = (float)e.X / canvas.Size.Width;
                 mouseDragPos.y = (float)e.Y / canvas.Size.Height;
 
+                // Calculate direction
+                Vector2 pos = new Vector2(e.X, e.Y);
+                Vector2 dir = VectorMathUtils.DirectionFromPoints(oldPos, pos);
+                offset -= dir;
+
+                //Move Image
+                Navigate(offset, zoom);
+
                 // Output Mouse pos
-                Blueprintz.logger.Info("X: " + mouseDragPos.x + " Y: " + mouseDragPos.y);
+                Blueprintz.logger.Info("X: " + offset.x + " Y: " + offset.y + "   " + e.X + " " + e.Y);
+
+                // Update position
+                oldPos = new Vector2(e.X, e.Y);
             }
         }
 
-        private void Canvas_MouseUp(object sender, MouseEventArgs e) => mouseGrabbing = false;
-        private void Canvas_MouseDown(object sender, MouseEventArgs e) => mouseGrabbing = true;
+        private void Canvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseButtons = MouseButtons.None;
+            mouseGrabbing = false;
+        }
+
+        private void Canvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            offset = new Vector2((-e.X) + offset.x, (-e.Y) + offset.y);
+            oldPos = Vector2.zero;
+            mouseButtons = e.Button;
+            mouseGrabbing = true;
+        }
 
         private void Canvas_MouseWheel(object sender, MouseEventArgs e)
         {
@@ -69,6 +95,35 @@ namespace Blueprintz.Editor
 
         private float GetUnityUnitAsPixels(float mapSizeInUnityUnits, int imageSizeInPixels)
             => imageSizeInPixels / mapSizeInUnityUnits;
+
+        
+
+        public void Navigate(Vector2 move, float zoomFactor)
+        {
+
+            // create image reference
+            Image img = bitmap;
+
+            // Create temporary bitmap
+            Bitmap tempBitmap = new Bitmap(img.Width, img.Height);
+
+            // Calculate bounds
+            Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
+            Vector2 pos = new Vector2(move.x, move.y);
+            RectangleF desRect = new RectangleF(pos.x, pos.y, size.x, size.y);
+            RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
+
+            // Resize image
+            Graphics graphics = Graphics.FromImage(tempBitmap);
+            graphics.DrawImage(img, desRect, scrRect, GraphicsUnit.Pixel);
+
+            // Free memory
+            graphics.Dispose();
+            canvas.Image.Dispose();
+
+            // Apply image
+            canvas.Image = tempBitmap;
+        }
 
         public void Zoom(float zoomFactor)
         {

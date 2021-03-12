@@ -8,7 +8,6 @@ using Blueprintz.Editor;
 using System.Drawing;
 using Blueprintz.Debugging;
 using Blueprintz.Encoding;
-using Blueprintz.Json;
 
 namespace Blueprintz
 {

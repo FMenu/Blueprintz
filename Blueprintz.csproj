@@ -70,10 +70,6 @@
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
-    <Compile Include="Json\BLZ\BLZFireworksStructure.cs" />
-    <Compile Include="Json\BLZ\BLZFuseStructure.cs" />
-    <Compile Include="Json\BLZ\BLZJsonStructure.cs" />
-    <Compile Include="Json\JsonStructure.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
