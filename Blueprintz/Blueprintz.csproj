@@ -77,7 +77,7 @@
     <Compile Include="Style\MultichoiceMaterialMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Style\Tabs.cs" />
+    <Compile Include="Editor\Tabs.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>

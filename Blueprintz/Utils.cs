@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,40 @@ namespace Blueprintz
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
+        }
+
+        public static uint GetResource<T>(string name, out T resource)
+        {
+            ComponentResourceManager resources =
+                new ComponentResourceManager(typeof(Blueprintz));
+            var res = resources.GetObject(name);
+            object @null = null;
+            if (res != null)
+            {
+                Blueprintz.logger.Info(typeof(T).ToString() + " " + res.GetType().ToString());
+                if (res.GetType() == typeof(T))
+                {
+                    resource = (T)res;
+                    return 0;
+                }
+                else
+                {
+                    resource = (T)@null;
+                    return 2;
+                }
+            }
+            resource = (T)@null;
+            return 1;
+        }
+
+        public static T LoadResource<T>(string name)
+        {
+            uint result = GetResource(name, out T res);
+            if (result == 0) return res;
+            else throw new Exception(
+                "Failed to load resource editorBox.Image. Returned: "
+                + result.GetType().Name + ": " + result.ToString()
+            );
         }
     }
 }
