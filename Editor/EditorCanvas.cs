@@ -68,7 +68,7 @@ namespace Blueprintz.Editor
         {
             // Calculate direction
             Vector2 pos = new Vector2(mousePos.X, mousePos.Y);
-            Vector2 dir = oldPos - pos;
+            Vector2 dir = Utils.GetDirection(oldPos, pos);
             offset -= dir;
 
             //Move Image
@@ -78,7 +78,7 @@ namespace Blueprintz.Editor
             Blueprintz.logger.Debug("X: " + offset.X + " Y: " + offset.Y + "   " + mousePos.X + " " + mousePos.Y);
 
             // Update position
-            oldPos = new Vector2(mousePos.X, mousePos.X);
+            oldPos = new Vector2(mousePos.X, mousePos.Y);
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
@@ -144,10 +144,7 @@ namespace Blueprintz.Editor
 
         public void Zoom(float zoomFactor)
         {
-            // Ajust uuip
-            uuip *= zoomFactor;
-
-            // create image reference
+            // Create image reference
             Image img = bitmap;
 
             // Create temporary bitmap
@@ -155,7 +152,7 @@ namespace Blueprintz.Editor
 
             // Calculate bounds
             Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
-            Vector2 pos = new Vector2(img.Width / 2 - size.X / 2, img.Height / 2 - size.Y / 2);
+            Vector2 pos = new Vector2(0, 0);
             RectangleF desRect = new RectangleF(pos.X, pos.Y, size.X, size.Y);
             RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
 

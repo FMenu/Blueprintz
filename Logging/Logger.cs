@@ -1,5 +1,6 @@
-﻿using JumpinFrog.Vectors;
-using System;
+﻿using System;
+using System.Drawing;
+using System.Numerics;
 
 namespace JumpinFrog.Logging
 {
@@ -8,7 +9,7 @@ namespace JumpinFrog.Logging
         private ConsoleColor infoColor, debugColor, warningColor, errorColor, criticalColor, logPrintColor;
         private bool placeLineBreak;
 
-        public Logger(bool colorPrefix, bool lineEndAfterPrefix, string consoleTitle, bool showCursor, Vector.Vector2I windowSize, Action failCallback = null)
+        public Logger(bool colorPrefix, bool lineEndAfterPrefix, string consoleTitle, bool showCursor, Size windowSize, Action failCallback = null)
         {
             if (colorPrefix)
             {
@@ -34,7 +35,7 @@ namespace JumpinFrog.Logging
                 CustomConsole.AttachConsole();
                 Console.Title = consoleTitle;
                 Console.CursorVisible = showCursor;
-                Console.SetWindowSize(windowSize.x, windowSize.y);
+                Console.SetWindowSize(windowSize.Width, windowSize.Height);
             }
             catch { if (failCallback != null) failCallback(); }
         }
@@ -169,7 +170,7 @@ namespace JumpinFrog.Logging
             false,
             "Default Logger output",
             false,
-            new Vector.Vector2I(800, 600)
+            new Size(800, 600)
             );
     }
 }

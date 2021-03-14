@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,6 +76,13 @@ namespace Blueprintz
                 "Failed to load resource editorBox.Image. Returned: "
                 + result.GetType().Name + ": " + result.ToString()
             );
+        }
+
+        public static Vector2 GetDirection(Vector2 origin, Vector2 point)
+        {
+            float x = origin.X - point.X;
+            float y = origin.Y - point.Y;
+            return new Vector2(x, y);
         }
     }
 }
