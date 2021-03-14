@@ -1,8 +1,8 @@
 ﻿using Blueprintz.Style;
-using JumpinFrog.Vectors;
 using MaterialSkin.Controls;
 using System;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 
 namespace Blueprintz.Editor
@@ -18,10 +18,10 @@ namespace Blueprintz.Editor
         private bool mouseGrabbing = false;
         private MouseButtons mouseButtons = MouseButtons.None;
 
-        private Vector2 mouseDragPos = Vector2.zero;
-        private Vector2 normalMousePos = Vector2.zero;
-        private Vector2 oldPos = Vector2.zero;
-        private Vector2 offset = Vector2.zero;
+        private Vector2 mouseDragPos = Vector2.Zero;
+        private Vector2 normalMousePos = Vector2.Zero;
+        private Vector2 oldPos = Vector2.Zero;
+        private Vector2 offset = Vector2.Zero;
 
         private Timer mouseUpdate = new Timer();
 
@@ -58,8 +58,8 @@ namespace Blueprintz.Editor
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             // Calculate normalized Mouse Position
-            mouseDragPos.x = (float)e.X / canvas.Size.Width;
-            mouseDragPos.y = (float)e.Y / canvas.Size.Height;
+            mouseDragPos.X = (float)e.X / canvas.Size.Width;
+            mouseDragPos.Y = (float)e.Y / canvas.Size.Height;
 
             normalMousePos = new Vector2(e.X, e.Y);
         }
@@ -67,18 +67,18 @@ namespace Blueprintz.Editor
         private void MovePlane(Vector2 mousePos)
         {
             // Calculate direction
-            Vector2 pos = new Vector2(mousePos.x, mousePos.y);
-            Vector2 dir = VectorMathUtils.DirectionFromPoints(oldPos, pos);
+            Vector2 pos = new Vector2(mousePos.X, mousePos.Y);
+            Vector2 dir = oldPos - pos;
             offset -= dir;
 
             //Move Image
             Navigate(offset, zoom);
 
             // Output Mouse pos
-            Blueprintz.logger.Debug("X: " + offset.x + " Y: " + offset.y + "   " + mousePos.x + " " + mousePos.y);
+            Blueprintz.logger.Debug("X: " + offset.X + " Y: " + offset.Y + "   " + mousePos.X + " " + mousePos.Y);
 
             // Update position
-            oldPos = new Vector2(mousePos.x, mousePos.y);
+            oldPos = new Vector2(mousePos.X, mousePos.X);
         }
 
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
@@ -90,8 +90,8 @@ namespace Blueprintz.Editor
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            offset = new Vector2((-e.X) + offset.x, (-e.Y) + offset.y);
-            oldPos = Vector2.zero;
+            offset = new Vector2((-e.X) + offset.X, (-e.Y) + offset.Y);
+            oldPos = Vector2.Zero;
             mouseButtons = e.Button;
             mouseGrabbing = true;
             if (mouseGrabbing && mouseButtons == MouseButtons.Left)
@@ -126,8 +126,8 @@ namespace Blueprintz.Editor
 
             // Calculate bounds
             Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
-            Vector2 pos = new Vector2(move.x, move.y);
-            RectangleF desRect = new RectangleF(pos.x, pos.y, size.x, size.y);
+            Vector2 pos = new Vector2(move.X, move.Y);
+            RectangleF desRect = new RectangleF(pos.X, pos.Y, size.X, size.Y);
             RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
 
             // Resize image
@@ -155,8 +155,8 @@ namespace Blueprintz.Editor
 
             // Calculate bounds
             Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
-            Vector2 pos = new Vector2(img.Width / 2 - size.x / 2, img.Height / 2 - size.y / 2);
-            RectangleF desRect = new RectangleF(pos.x, pos.y, size.x, size.y);
+            Vector2 pos = new Vector2(img.Width / 2 - size.X / 2, img.Height / 2 - size.Y / 2);
+            RectangleF desRect = new RectangleF(pos.X, pos.Y, size.X, size.Y);
             RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
 
             // Resize image
