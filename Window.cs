@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using Blueprintz.Editor;
 using System.Drawing;
 using JumpinFrog.Logging;
+using Blueprintz.Encoding;
+using Blueprintz.JsonStructures;
+using System.Numerics;
 
 namespace Blueprintz
 {
@@ -34,6 +37,35 @@ namespace Blueprintz
             // Save Page an Remove it.
             Tabs.editorPage = MainControl.TabPages[1];
             MainControl.TabPages.Remove(Tabs.editorPage);
+
+            // Json Test
+            JsonSerializer<BLZJsonStructure> serializer = new JsonSerializer<BLZJsonStructure>();
+            // Values
+            string[] ids = new string[3] { Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString() };
+            string[] names = new string[3] { "Slammer", "Slammer", "Viper" };
+            Vector3[] positions = new Vector3[] { new Vector3(0, 20, 0), new Vector3(0, 20, 0), new Vector3(0, 20, 0) };
+            Quaternion[] rotations = new Quaternion[] { new Quaternion(0, 0, 0, 0), new Quaternion(0, 0, 0, 0), new Quaternion(0, 0, 0, 0) };
+            bool[] kinematic = new bool[] { false, false, true };
+            // Encode
+            BLZJsonStructure structure = new BLZJsonStructure("town", 3, 0, false, ids, names, positions, rotations, kinematic, new int[0], new string[0][]);
+            serializer.Encode(structure);
+            // Format
+            string[] lines = serializer.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            // Log
+            logger.Log(lines);
+            Console.WriteLine();
+
+            // Bson
+            string bson = BinaryEncoder.EncodeFromJson(serializer.ToString());
+            // Log
+            logger.Log(new string[1] { bson });
+            Console.WriteLine();
+
+            // Zip
+            byte[] zipped = BinaryEncoder.Zip(bson);
+            // Log
+            logger.Log(new string[1] { System.Text.Encoding.ASCII.GetString(zipped)});
+            Console.WriteLine();
         }
 
         #region Other

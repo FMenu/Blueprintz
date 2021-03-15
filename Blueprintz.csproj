@@ -64,6 +64,8 @@
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
+    <Compile Include="JsonStructures\BLZJsonStructure.cs" />
+    <Compile Include="JsonStructures\FMCakeJsonStructure.cs" />
     <Compile Include="Logging\Console.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
