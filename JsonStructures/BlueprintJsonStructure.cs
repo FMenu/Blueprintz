@@ -1,19 +1,20 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace Blueprintz.JsonStructures
 {
-    public class FMCakeJsonStructure
+    public class BlueprintJsonStructure
     {
         public string Author;
         public string Description;
         public string ModifiedUtc;
         public EntitiesArray[] Entities;
 
-        public FMCakeJsonStructure(string author, string description, string utc, int arraySize, string[] guids, string[] defIds, Vector3[] positions, Quaternion[] rotations, bool[] areKinematic)
+        public BlueprintJsonStructure(string author, string description, DateTime currentTime, int arraySize, string[] guids, string[] defIds, Vector3[] positions, Quaternion[] rotations, bool[] areKinematic)
         {
             Author = author;
             Description = description;
-            ModifiedUtc = utc;
+            ModifiedUtc = currentTime.ToString("o");
             Entities = new EntitiesArray[arraySize];
             for (int i = 0; i < arraySize; i++)
             {
