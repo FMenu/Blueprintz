@@ -39,14 +39,19 @@ namespace Blueprintz
             MainControl.TabPages.Remove(Tabs.editorPage);
 
             JsonSerializer<BLZJsonStructure> serializer = new JsonSerializer<BLZJsonStructure>();
+            JsonSerializer<BlueprintJsonStructure> serializer2 = new JsonSerializer<BlueprintJsonStructure>();
 
             Firework firework1 = new Firework(Guid.NewGuid(), "Rocket_AmazingGranny_Purple", new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f), true);
             Firework firework2 = new Firework(Guid.NewGuid(), "Cake_2021", new Vector3(15f, 9f, 1f), new Quaternion(0f, 0f, 0f, 0f), true);
             Firework firework3 = new Firework(Guid.NewGuid(), "PreloadedTube_MrBeats", new Vector3(0.0444f, 11f, 02f), new Quaternion(0f, 12f, 0f, 0.1f), true);
 
-            BLZJsonStructure jsonStructure = new BLZJsonStructure("", "Blueprintz Generator", "town", new Firework[]{ firework1, firework2, firework3 }, new Fuse[]{ });
+            Fuse fuse1 = new Fuse(Guid.NewGuid(), firework1.id, firework2.id, 2);
+
+            BLZJsonStructure jsonStructure = new BLZJsonStructure("", "Blueprintz Generator", "town", new Firework[] { firework1, firework2, firework3 }, new Fuse[]{ fuse1 });
+            BlueprintJsonStructure fmJsonStructure = new BlueprintJsonStructure("Daan", "test", DateTime.UtcNow, new Firework[] { firework1, firework2, firework3 }, new Fuse[] { fuse1 });
 
             serializer.Encode(jsonStructure);
+            serializer2.Encode(fmJsonStructure);
             string bson = BinaryEncoder.EncodeFromJson(serializer.ToString());
             byte[] zipped = BinaryEncoder.Zip(bson);
 
@@ -57,6 +62,9 @@ namespace Blueprintz
             Console.WriteLine();
 
             logger.Log(new string[1] { System.Text.Encoding.ASCII.GetString(zipped)});
+            Console.WriteLine();
+
+            logger.Log(serializer2.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
             Console.WriteLine();
 
 
