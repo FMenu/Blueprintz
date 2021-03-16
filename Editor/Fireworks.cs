@@ -25,6 +25,12 @@ namespace Blueprintz.Editor
             return new BLZJsonStructure(name, description, map, fireworks, fuses);
         }
 
+        public BlueprintJsonStructure ToBlueprintStructure()
+        {
+            GetValueArrays(out Firework[] fireworks, out Fuse[] fuses);
+            return new BlueprintJsonStructure("Blueprintz by FMenu", description, DateTime.UtcNow, fireworks, fuses);
+        }
+
         public void GetValueArrays(out Firework[] _fireworks, out Fuse[] _fuses)
         {
             KeyValuePair<string, Firework>[] fireworkPair = this.fireworks.ToArray();
@@ -51,7 +57,7 @@ namespace Blueprintz.Editor
         {
             if (fireworks.TryGetValue(fromId, out Firework firework) && fireworks.TryGetValue(toId, out Firework firework1))
             {
-                Fuse fuse = new Fuse(Guid.NewGuid().ToString(), firework.id, firework1.id, (int)speed);
+                Fuse fuse = new Fuse(Guid.NewGuid(), firework.id, firework1.id, (int)speed);
                 string identifier = Guid.NewGuid().ToString();
                 fuses.Add(identifier, fuse);
                 return identifier;
