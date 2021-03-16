@@ -67,8 +67,8 @@ namespace Blueprintz.Editor
                 window.MainControl.SelectedTab = Tabs.editorPage;
 
                 // Create new Canvas
-                if (window.editorCancas != null) window.editorCancas.Dispose();
-                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
+                if (window.editorCanvas != null) window.editorCanvas.Dispose();
+                window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             else if (result == DialogResult.Yes)
             {
@@ -94,7 +94,7 @@ namespace Blueprintz.Editor
                 window.MainControl.SelectedTab = Tabs.editorPage;
 
                 // Create new Canvas
-                window.editorCancas = new EditorCanvas(window.editorBox, window.MainControl);
+                window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             Tabs.tabName = "";
         }

@@ -64,8 +64,10 @@
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
+    <Compile Include="JsonStructures\Firework.cs" />
+    <Compile Include="JsonStructures\Fuse.cs" />
     <Compile Include="JsonStructures\BLZJsonStructure.cs" />
-    <Compile Include="JsonStructures\FMCakeJsonStructure.cs" />
+    <Compile Include="JsonStructures\BlueprintJsonStructure.cs" />
     <Compile Include="Logging\Console.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Style\MaterialMessageBox.cs">
@@ -115,5 +117,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
