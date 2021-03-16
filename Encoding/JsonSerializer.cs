@@ -10,8 +10,8 @@ namespace Blueprintz.Encoding
 
         public void Encode(T properties)
         {
-            rawJson = JsonConvert.SerializeObject(properties, Formatting.None);
-            json = JsonConvert.SerializeObject(properties, Formatting.Indented);
+            rawJson = JsonConvert.SerializeObject(properties, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None });
+            json = JsonConvert.SerializeObject(properties, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.Indented });
         }
 
         public bool WriteToFile(string path, bool formatted)
