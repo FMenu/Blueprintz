@@ -2,6 +2,7 @@
 using MaterialSkin.Controls;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Numerics;
 using System.Windows.Forms;
 
@@ -11,10 +12,8 @@ namespace Blueprintz.Editor
     {
         private PictureBox canvas;
         private MaterialTabControl tabs;
-        private double uuip = 0;
         private Bitmap bitmap;
 
-        private float zoom = 1;
         private bool mouseGrabbing = false;
         private MouseButtons mouseButtons = MouseButtons.None;
 
@@ -22,6 +21,11 @@ namespace Blueprintz.Editor
         private Vector2 normalMousePos = Vector2.Zero;
         private Vector2 oldPos = Vector2.Zero;
         private Vector2 offset = Vector2.Zero;
+        private Vector2 zoom = Vector2.One;
+
+        private readonly Vector2 zoomStep = Vector2.One;
+
+        private Rectangle worldCoord = Rectangle.Empty;
 
         private Timer mouseUpdate = new Timer();
 
@@ -31,12 +35,10 @@ namespace Blueprintz.Editor
         {
             canvas = pb;
             tabs = tabC;
-            uuip = GetUnityUnitAsPixels(mapSizeX, canvas.Width);
 
             //Reset
             canvas.Image.Dispose();
             canvas.Image = Utils.LoadResource<Bitmap>("editorBox.Image");
-            zoom = 1;
 
             // Events
             canvas.MouseWheel += Canvas_MouseWheel;
@@ -64,23 +66,6 @@ namespace Blueprintz.Editor
             normalMousePos = new Vector2(e.X, e.Y);
         }
 
-        private void MovePlane(Vector2 mousePos)
-        {
-            // Calculate direction
-            Vector2 pos = new Vector2(mousePos.X, mousePos.Y);
-            Vector2 dir = Utils.GetDirection(oldPos, pos);
-            offset -= dir;
-
-            //Move Image
-            Navigate(offset, zoom);
-
-            // Output Mouse pos
-            Blueprintz.logger.Debug("X: " + offset.X + " Y: " + offset.Y + "   " + mousePos.X + " " + mousePos.Y);
-
-            // Update position
-            oldPos = new Vector2(mousePos.X, mousePos.Y);
-        }
-
         private void Canvas_MouseUp(object sender, MouseEventArgs e)
         {
             mouseUpdate.Stop();
@@ -102,70 +87,57 @@ namespace Blueprintz.Editor
         {
             if (tabs.SelectedTab == Tabs.editorPage)
             {
-                if (e.Delta < 0) zoom -= 0.1f;
-                else if (e.Delta >= 0) zoom += 0.1f;
-                if (zoom >= 1) Zoom(zoom);
-                else
-                {
-                    zoom = 1;
-                    Zoom(1);
-                }
+                Point mousePos = new Point(e.X, e.Y);
+                if (e.Delta < 0) zoom -= zoomStep / 25;
+                else if (e.Delta > 0) zoom += zoomStep / 25;
+                if (zoom.X >= 1 && zoom.Y >= 1) canvas.Image = ScaleImage(bitmap, zoom, mousePos);
+                else zoom = Vector2.One;
             }
         }
 
-        private float GetUnityUnitAsPixels(float mapSizeInUnityUnits, int imageSizeInPixels)
-            => imageSizeInPixels / mapSizeInUnityUnits;
-
-        public void Navigate(Vector2 move, float zoomFactor)
+        private void MovePlane(Vector2 mousePos)
         {
-            // Create image reference
-            Image img = bitmap;
+            Vector2 pos = new Vector2(mousePos.X, mousePos.Y);
+            Vector2 dir = Utils.GetDirection(oldPos, pos);
+            offset -= dir;
+            canvas.Image = MoveImage(bitmap, offset, zoom);
+            oldPos = new Vector2(mousePos.X, mousePos.Y);
+            worldCoord = new Rectangle((int)offset.X, (int)offset.Y, bitmap.Width, bitmap.Height);
+            //TODO: Remove this when you have used the zoom aswell.
+            zoom = Vector2.One;
 
-            // Create temporary bitmap
-            Bitmap tempBitmap = new Bitmap(img.Width, img.Height);
-
-            // Calculate bounds
-            Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
-            Vector2 pos = new Vector2(move.X, move.Y);
-            RectangleF desRect = new RectangleF(pos.X, pos.Y, size.X, size.Y);
-            RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
-
-            // Resize image
-            Graphics graphics = Graphics.FromImage(tempBitmap);
-            graphics.DrawImage(img, desRect, scrRect, GraphicsUnit.Pixel);
-
-            // Free memory
-            graphics.Dispose();
-            canvas.Image.Dispose();
-
-            // Apply image
-            canvas.Image = tempBitmap;
+            // Output Mouse pos
+            Blueprintz.logger.Debug(offset.ToString() + " " + mousePos.ToString() + " | " + worldCoord.ToString());
         }
 
-        public void Zoom(float zoomFactor)
+        public Image MoveImage(Image img, Vector2 pos, Vector2 currentScale)
         {
-            // Create image reference
-            Image img = bitmap;
-
-            // Create temporary bitmap
             Bitmap tempBitmap = new Bitmap(img.Width, img.Height);
-
-            // Calculate bounds
-            Vector2 size = new Vector2(img.Width * zoomFactor, img.Height * zoomFactor);
-            Vector2 pos = new Vector2(0, 0);
+            //TODO: Put the zoom into the mix. (currentScale)
+            Vector2 size = new Vector2(img.Size.Width, img.Size.Height);
             RectangleF desRect = new RectangleF(pos.X, pos.Y, size.X, size.Y);
-            RectangleF scrRect = new RectangleF(0, 0, img.Width, img.Height);
-
-            // Resize image
+            RectangleF scrRect = new RectangleF(0, 0, img.Size.Width, img.Height);
             Graphics graphics = Graphics.FromImage(tempBitmap);
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             graphics.DrawImage(img, desRect, scrRect, GraphicsUnit.Pixel);
-
-            // Free memory
             graphics.Dispose();
             canvas.Image.Dispose();
+            return tempBitmap;
+        }
 
-            // Apply image
-            canvas.Image = tempBitmap;
+        public Image ScaleImage(Image img, Vector2 scale, Point cursorPos)
+        {
+            Bitmap tempBitmap = new Bitmap(img.Width, img.Height);
+            Vector2 size = new Vector2(img.Size.Width / scale.X, img.Size.Height / scale.Y);
+            Vector2 pos = new Vector2(canvas.Size.Width / 2 - size.X / 2, canvas.Size.Height / 2 - size.Y / 2);
+            RectangleF desRect = new RectangleF(0, 0, img.Size.Width, img.Size.Height);
+            RectangleF scrRect = new RectangleF(-offset.X + pos.X, -offset.Y + pos.Y, size.X, size.Y);
+            Graphics graphics = Graphics.FromImage(tempBitmap);
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.DrawImage(img, desRect, scrRect, GraphicsUnit.Pixel);
+            graphics.Dispose();
+            canvas.Image.Dispose();
+            return tempBitmap;
         }
 
         public void Dispose()
