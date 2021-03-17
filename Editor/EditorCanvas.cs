@@ -142,6 +142,10 @@ namespace Blueprintz.Editor
 
         public void Dispose()
         {
+            mouseDragPos = Vector2.Zero;
+            oldPos = Vector2.Zero;
+            normalMousePos = Vector2.Zero;
+            offset = Vector2.Zero;
             mouseUpdate.Dispose();
             canvas.Image.Dispose();
         }
