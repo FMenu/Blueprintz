@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decoding\BinaryDecoder.cs" />
+    <Compile Include="Decoding\BsonDeserializer.cs" />
     <Compile Include="Editor\Fireworks.cs" />
     <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
