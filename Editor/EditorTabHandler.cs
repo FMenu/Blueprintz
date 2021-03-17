@@ -94,6 +94,7 @@ namespace Blueprintz.Editor
                 window.MainControl.SelectedTab = Tabs.editorPage;
 
                 // Create new Canvas
+                if (window.editorCanvas != null) window.editorCanvas.Dispose();
                 window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
             }
             Tabs.tabName = "";
