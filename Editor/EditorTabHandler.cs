@@ -1,9 +1,4 @@
 ﻿using Blueprintz.Style;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Blueprintz.Editor
@@ -19,15 +14,6 @@ namespace Blueprintz.Editor
 
         // TODO: Add save dialog where save is in the Editor section.
         #region Editor
-        /*
-        public void CreateNewEditor()
-        {
-            if (!Tabs.recentlySaved)
-                new MultichoiceMaterialMessageBox(ColorSchemes.dark_3, "Don't forget to save!",
-                    new string[2] { "Don't forget to save your work!", "Do you want to save it now?" },
-                    true, CreateNewEditorCallback, window);
-            else CreateNewEditorCallback(DialogResult.No);
-        }*/
 
         public void LoadEditor(string fileName, string fileExtension)
         {
@@ -47,100 +33,41 @@ namespace Blueprintz.Editor
 
         private void LoadEditorCallback(DialogResult result)
         {
-            if (result == DialogResult.No)
-            {
-                // Create string to display as Tab name.
-                string tabTitle = Tabs.tabName;
-
-                // Add Page if it doesn't already exist
-                if (!window.MainControl.TabPages.Contains(Tabs.editorPage))
-                    window.MainControl.TabPages.Add(Tabs.editorPage);
-
-                // Change Tab title
-                if (window.MainControl.TabPages[1].Text != tabTitle)
-                    Tabs.editorPage.Text = tabTitle;
-
-                // Reset saved variable
-                Tabs.recentlySaved = false;
-
-                // Open Tab
-                window.MainControl.SelectedTab = Tabs.editorPage;
-
-                // Create new Canvas
-                if (window.editorCanvas != null) window.editorCanvas.Dispose();
-                window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
-            }
+            if (result == DialogResult.No) DoSaveStuff();
             else if (result == DialogResult.Yes)
             {
                 // Save
                 // Remove and put in save Method:
                 Tabs.recentlySaved = true;
-
-                // Create string to display as Tab name.
-                string tabTitle = Tabs.tabName;
-
-                // Add Page if it doesn't already exist
-                if (!window.MainControl.TabPages.Contains(Tabs.editorPage))
-                    window.MainControl.TabPages.Add(Tabs.editorPage);
-
-                // Change Tab title
-                if (window.MainControl.TabPages[1].Text != tabTitle)
-                    Tabs.editorPage.Text = tabTitle;
-
-                // Reset saved variable
-                Tabs.recentlySaved = false;
-
-                // Open Tab
-                window.MainControl.SelectedTab = Tabs.editorPage;
-
-                // Create new Canvas
-                if (window.editorCanvas != null) window.editorCanvas.Dispose();
-                window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
+                DoSaveStuff();
             }
-            Tabs.tabName = "";
+            else Tabs.tabName = "";
         }
 
-        /*
-        private void CreateNewEditorCallback(DialogResult result)
+        private void DoSaveStuff()
         {
-            if (result == DialogResult.No)
-            {
-                // Add Page if it doesn't already exist
-                if (!window.MainControl.TabPages.Contains(Tabs.editorPage))
-                    window.MainControl.TabPages.Add(Tabs.editorPage);
 
-                // Change Tab title
-                if (window.MainControl.TabPages[1].Text != "New Blueprint")
-                    Tabs.editorPage.Text = "New Blueprint";
+            // Create string to display as Tab name.
+            string tabTitle = Tabs.tabName;
 
-                // Reset saved variable
-                Tabs.recentlySaved = false;
+            // Add Page if it doesn't already exist
+            if (!window.MainControl.TabPages.Contains(Tabs.editorPage))
+                window.MainControl.TabPages.Add(Tabs.editorPage);
 
-                // Open Tab
-                window.MainControl.SelectedTab = Tabs.editorPage;
-            }
-            else if (result == DialogResult.Yes)
-            {
-                // Save
-                // Remove and put in save Method:
-                Tabs.recentlySaved = true;
+            // Change Tab title
+            if (window.MainControl.TabPages[1].Text != tabTitle)
+                Tabs.editorPage.Text = tabTitle;
 
-                // Add Page if it doesn't already exist
-                if (!window.MainControl.TabPages.Contains(Tabs.editorPage))
-                    window.MainControl.TabPages.Add(Tabs.editorPage);
+            // Reset saved variable
+            Tabs.recentlySaved = false;
 
-                // Change Tab title
-                if (window.MainControl.TabPages[1].Text != "New Blueprint")
-                    Tabs.editorPage.Text = "New Blueprint";
+            // Open Tab
+            window.MainControl.SelectedTab = Tabs.editorPage;
 
-                // Reset saved variable
-                Tabs.recentlySaved = false;
-
-                // Open Tab
-                window.MainControl.SelectedTab = Tabs.editorPage;
-            }
-            Tabs.tabName = "";
-        }*/
+            // Create new Canvas
+            if (window.editorCanvas != null) window.editorCanvas.Dispose();
+            window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
+        }
         #endregion
     }
 }
