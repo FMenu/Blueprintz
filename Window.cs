@@ -11,6 +11,7 @@ using JumpinFrog.Logging;
 using Blueprintz.Encoding;
 using Blueprintz.JsonStructures;
 using System.Numerics;
+using System.Linq;
 
 namespace Blueprintz
 {
@@ -76,7 +77,14 @@ namespace Blueprintz
             logger.Log(serializer2.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
             Console.WriteLine();
 
-
+            // Added custom Methods for displaying and using the FireworkType enum to display the GUI names and to make it easy to get the JSON values.
+            var ft = FireworkType.AmazingGranny1;
+            // Get the display name of the enum object
+            ft.GetDisplayString();
+            // Get the Description of the object (in this case the JSON value)
+            ft.ToDescriptionString();
+            // Get an instance of the object set to every item in the object.
+            Utils.GetAllItmesInFireworkTypes().ToEnumerable().ToArray();
         }
 
         #region Other

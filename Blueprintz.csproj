@@ -64,6 +64,7 @@
     <Compile Include="Editor\Fireworks.cs" />
     <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
+    <Compile Include="Editor\FireworkType.cs" />
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />

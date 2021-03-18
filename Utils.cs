@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blueprintz.Editor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -83,6 +84,12 @@ namespace Blueprintz
             float x = origin.X - point.X;
             float y = origin.Y - point.Y;
             return new Vector2(x, y);
+        }
+
+        public static IEnumerator<FireworkType> GetAllItmesInFireworkTypes()
+        {
+            foreach (FireworkType type in (FireworkType[])Enum.GetValues(typeof(FireworkType)))
+                yield return type;
         }
     }
 }
