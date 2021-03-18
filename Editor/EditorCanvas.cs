@@ -75,7 +75,9 @@ namespace Blueprintz.Editor
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
+            Program.logger.Debug(offset.ToString() + ":  before reassigning.");
             offset = new Vector2((-e.X) + offset.X, (-e.Y) + offset.Y);
+            Program.logger.Debug(offset.ToString() + ":  after reassigning.");
             oldPos = Vector2.Zero;
             mouseButtons = e.Button;
             mouseGrabbing = true;
@@ -107,7 +109,7 @@ namespace Blueprintz.Editor
             zoom = Vector2.One;
 
             // Output Mouse pos
-            Blueprintz.logger.Debug(offset.ToString() + " " + mousePos.ToString() + " | " + worldCoord.ToString());
+            Program.logger.Debug(offset.ToString() + " " + mousePos.ToString() + " | " + worldCoord.ToString() + " | " + dir.ToString());
         }
 
         public Image MoveImage(Image img, Vector2 pos, Vector2 currentScale)
@@ -142,6 +144,7 @@ namespace Blueprintz.Editor
 
         public void Dispose()
         {
+            mouseUpdate.Stop();
             mouseDragPos = Vector2.Zero;
             oldPos = Vector2.Zero;
             normalMousePos = Vector2.Zero;

@@ -20,8 +20,6 @@ namespace Blueprintz
         private readonly MaterialSkinManager materialSkin = MaterialSkinManager.Instance;
         private readonly EditorTabHandler tabHandler = null;
 
-        public static readonly Logger logger = Logger.defaultLogger;
-
         public EditorCanvas editorCanvas = null;
 
         public Blueprintz()
@@ -40,9 +38,9 @@ namespace Blueprintz
             MainControl.TabPages.Remove(Tabs.editorPage);
 
 
-            Firework firework1 = new Firework(Guid.NewGuid(), "Rocket_AmazingGranny_Purple", new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f), true);
-            Firework firework2 = new Firework(Guid.NewGuid(), "Cake_2021", new Vector3(15f, 9f, 1f), new Quaternion(0f, 0f, 0f, 0f), true);
-            Firework firework3 = new Firework(Guid.NewGuid(), "PreloadedTube_MrBeats", new Vector3(0.0444f, 11f, 02f), new Quaternion(0f, 12f, 0f, 0.1f), true);
+            Firework firework1 = new Firework("Rocket_AmazingGranny_Purple", new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f), true);
+            Firework firework2 = new Firework("Cake_2021", new Vector3(15f, 9f, 1f), new Quaternion(0f, 0f, 0f, 0f), true);
+            Firework firework3 = new Firework("PreloadedTube_MrBeats", new Vector3(0.0444f, 11f, 02f), new Quaternion(0f, 12f, 0f, 0.1f), true);
 
             Fireworks fireworks = new Fireworks("", "Blueprintz Generator", Map.Town);
 
@@ -65,16 +63,16 @@ namespace Blueprintz
 
             byte[] zipped = BinaryEncoder.Zip(bson);
 
-            logger.Log(serializer.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
+            Program.logger.Log(serializer.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
             Console.WriteLine();
 
-            logger.Log(new string[1] { bson });
+            Program.logger.Log(new string[1] { bson });
             Console.WriteLine();
 
-            logger.Log(new string[1] { System.Text.Encoding.ASCII.GetString(zipped) });
+            Program.logger.Log(new string[1] { System.Text.Encoding.ASCII.GetString(zipped) });
             Console.WriteLine();
 
-            logger.Log(serializer2.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
+            Program.logger.Log(serializer2.GetFormatted().Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
             Console.WriteLine();
 
             // Added custom Methods for displaying and using the FireworkType enum to display the GUI names and to make it easy to get the JSON values.

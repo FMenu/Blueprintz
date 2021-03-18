@@ -53,7 +53,7 @@ namespace Blueprintz
             object @null = null;
             if (res != null)
             {
-                Blueprintz.logger.Info(typeof(T).ToString() + " " + res.GetType().ToString());
+                Program.logger.Info(typeof(T).ToString() + " " + res.GetType().ToString());
                 if (res.GetType() == typeof(T))
                 {
                     resource = (T)res;

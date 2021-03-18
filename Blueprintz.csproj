@@ -68,7 +68,8 @@
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\FailHandler.cs" />
     <Compile Include="JsonStructures\Firework.cs" />
     <Compile Include="JsonStructures\Fuse.cs" />
     <Compile Include="JsonStructures\BLZJsonStructure.cs" />
@@ -83,17 +84,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editor\Tabs.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="Window.cs">
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Forms\Blueprintz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Window.Designer.cs">
-      <DependentUpon>Window.cs</DependentUpon>
+    <Compile Include="Forms\Blueprintz.Designer.cs">
+      <DependentUpon>Blueprintz.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Window.resx">
-      <DependentUpon>Window.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Blueprintz.resx">
+      <DependentUpon>Blueprintz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Style\MaterialMessageBox.resx">
       <DependentUpon>MaterialMessageBox.cs</DependentUpon>

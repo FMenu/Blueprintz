@@ -11,8 +11,9 @@ namespace Blueprintz.JsonStructures
         public Quaternion rotation;
         public bool isKinematic;
 
-        public Firework(Guid _id, string _fireworkIndentifier, Vector3 _position, Quaternion _rotation, bool _isKinematic)
+        public Firework(string _fireworkIndentifier, Vector3 _position, Quaternion _rotation, bool _isKinematic, Guid _id = new Guid())
         {
+            if (_id == new Guid()) _id = Guid.NewGuid();
             this.id = _id.ToString();
             this.fireworkIndentifier = _fireworkIndentifier;
             this.position = _position;
