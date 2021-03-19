@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Blueprintz.Editor
 {
@@ -45,5 +40,40 @@ namespace Blueprintz.Editor
         [Description("Cake_PopperBoi")] PropperBoi,
         [Description("Cake_ShogunCrackling")] ShogunCrackling,
         [Description("Cake_TheMessenger")] Messager,
+
+        // Firecrackers
+        [Description("Firecracker_DoomBoom")] DoomBoom,
+        [Description("Firecracker_KokkenRulle")] KokkenRulle,
+        [Description("Firecracker_LadyFingers")] LadyFingers,
+        [Description("Firecracker_MaleToes")] MaleToes,
+        [Description("Firecracker_Snapper_Green")] SnapperGreen,
+        [Description("Firecracker_Snapper_Purple")] SnapperPurple,
+        [Description("Firecracker_Snapper_Red")] SnapperRed,
+        [Description("Firecracker_Snapper_White")] SnapperWhite,
+
+        // Novelties
+        [Description("RomanCandle_InsaneScreamer")] InsaneScreamer,
+        [Description("RomanCandle_MicoolaCandle")] MicoolaCandle,
+        [Description("RomanCandle_MoStick")] MoStick,
+        [Description("RomanCandle_SantaWasHere")] SantaWasHere,
+        [Description("RomanCandle_WandOfWizards")] WandOfWizards,
+        [Description("Whistler_ScreamingPal")] ScreamingPal,
+        [Description("Zipper_Mozzie")] Mozzie,
+
+        // Tubes
+        [Description("PreloadedTube_CodyBoom")] CodyBoom,
+        [Description("PreloadedTube_DraeBlast")] DraeBlast,
+        [Description("PreloadedTube_FoxUnlocked")] FoxUnlocked,
+        [Description("PreloadedTube_Imphentazia")] Imphentazia,
+        [Description("PreloadedTube_MrBeats")] MrBeats,
+        [Description("PreloadedTube_Pawluten")] Pawluten,
+        [Description("PreloadedTube_PewDiePew")] PewDiePew,
+
+        // Props
+        [Description("Prop_Prototype_Crate")] Crate,
+        [Description("Prop_Town_PropaneTank_01")] PropaneTankRed,
+        [Description("Prop_Town_PropaneTank_02")] PropaneTankWhite,
+        [Description("Prop_Town_PropaneTank_Tall_01")] TallPropaneTankRed,
+        [Description("Prop_Town_PropaneTank_Tall_02")] TallPropaneTankWhite
     }
 }

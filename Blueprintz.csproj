@@ -85,15 +85,15 @@
     </Compile>
     <Compile Include="Editor\Tabs.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <Compile Include="Forms\Blueprintz.cs">
+    <Compile Include="Blueprintz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Blueprintz.Designer.cs">
+    <Compile Include="Blueprintz.Designer.cs">
       <DependentUpon>Blueprintz.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Blueprintz.resx">
+    <EmbeddedResource Include="Blueprintz.resx">
       <DependentUpon>Blueprintz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Style\MaterialMessageBox.resx">
