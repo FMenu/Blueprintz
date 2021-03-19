@@ -83,6 +83,9 @@ namespace Blueprintz
             ft.ToDescriptionString();
             // Get an instance of the object set to every item in the object.
             Utils.GetAllItmesInFireworkTypes().ToEnumerable().ToArray();
+
+            //Fire Enable() event.
+            EventBus.FireEnable();
         }
 
         #region Other

@@ -1,14 +1,17 @@
 ﻿using Blueprintz.Style;
 using MaterialSkin.Controls;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Numerics;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Blueprintz.Editor
 {
-    public class EditorCanvas : IDisposable
+    public class EditorCanvas : EventBus, IDisposable
     {
         private PictureBox canvas;
         private MaterialTabControl tabs;
@@ -17,12 +20,18 @@ namespace Blueprintz.Editor
 
         private MouseButtons mouseButtons = MouseButtons.None;
 
+        private RectangleF worldSpace = Rectangle.Empty;
+        private RectangleF screenSpace = Rectangle.Empty;
+        private Vector2 worldScreenOffset = Vector2.Zero;
+
         private Timer mouseUpdate = new Timer();
 
         public EditorCanvas(PictureBox pb, MaterialTabControl tabC)
         {
             canvas = pb;
             tabs = tabC;
+
+            Subscribe();
 
             //Reset
             canvas.Image.Dispose();
@@ -38,6 +47,27 @@ namespace Blueprintz.Editor
             bitmap = new Bitmap(canvas.Image);
             mouseUpdate.Interval = 10;
             mouseUpdate.Tick += MouseUpdate_Tick;
+
+            //Initial Values
+            worldSpace.X = 0;
+            worldSpace.Y = 0;
+            worldSpace.Width = canvas.Width;
+            worldSpace.Height = canvas.Height;
+
+            screenSpace.X = worldScreenOffset.X;
+            screenSpace.Y = worldScreenOffset.Y;
+            screenSpace.Width = canvas.Width;
+            screenSpace.Height = canvas.Height;
+
+            BeginUpdate();
+        }
+
+        public override void Update()
+        {
+            screenSpace.X = worldScreenOffset.X;
+            screenSpace.Y = worldScreenOffset.Y;
+            screenSpace.Width = canvas.Width;
+            screenSpace.Height = canvas.Height;
         }
 
         private void MouseUpdate_Tick(object sender, EventArgs e)
@@ -85,6 +115,16 @@ namespace Blueprintz.Editor
             graphics.DrawImage(img, desRect, srcRect, GraphicsUnit.Pixel);
             graphics.Dispose();
             return tempBitmap;
+        }
+
+        public override IEnumerator GetParams<T>()
+        {
+            if (typeof(T) == typeof(FieldInfo))
+            {
+                foreach (FieldInfo info in GetType().GetFields())
+                    if (info.IsPublic) yield return info;
+            }
+            else yield break;
         }
     }
 }

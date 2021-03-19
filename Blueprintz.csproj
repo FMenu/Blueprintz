@@ -68,6 +68,7 @@
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
+    <Compile Include="EventBus.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\FailHandler.cs" />
     <Compile Include="JsonStructures\Firework.cs" />
