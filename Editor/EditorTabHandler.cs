@@ -66,6 +66,7 @@ namespace Blueprintz.Editor
 
             // Create new Canvas
             if (window.editorCanvas != null) window.editorCanvas.Dispose();
+            window.editorCanvas = null;
             window.editorCanvas = new EditorCanvas(window.editorBox, window.MainControl);
         }
         #endregion
