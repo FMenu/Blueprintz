@@ -77,7 +77,7 @@ namespace Blueprintz.Editor
             Vector2 pan = Vector2.Zero;
             pan.X = mousePos.X - startPan.X;
             pan.Y = mousePos.Y - startPan.Y;
-            UpdateImage(pan, scale);
+            UpdateImage(pan, Vector2.Zero, scale);
             startPan = mousePos;
         }
 
@@ -108,8 +108,8 @@ namespace Blueprintz.Editor
             {
                 if (e.Delta < 0) scale -= scrollSensitivity / 10;
                 else if (e.Delta > 0) scale += scrollSensitivity / 10;
-
-                if (scale.X >= 1 && scale.Y >= 1) UpdateImage(Vector2.Zero, scale);
+                //TODO: IMPORTANT! Add the feature that you zoom in the midle of the picture in world position.
+                if (scale.X >= 1 && scale.Y >= 1) UpdateImage(Vector2.Zero, Vector2.Zero, scale);
                 else scale = Vector2.One;
             }
         }
@@ -138,11 +138,11 @@ namespace Blueprintz.Editor
             return tempBitmap;
         }
 
-        private void UpdateImage(Vector2 displacement, Vector2 scale)
+        private void UpdateImage(Vector2 displacement, Vector2 sourceDisplacement, Vector2 scale)
         {
             worldScreenOffset += displacement;
             Image image = bitmap;
-            RectangleF src = new RectangleF(0, 0, image.Size.Width, image.Size.Height);
+            RectangleF src = new RectangleF(sourceDisplacement.X, sourceDisplacement.Y, image.Size.Width, image.Size.Height);
             RectangleF des = new RectangleF(worldScreenOffset.X, worldScreenOffset.Y, image.Size.Width * scale.X, image.Size.Height * scale.Y);
             canvas.Image.Dispose();
             canvas.Image = TransformImage(image, src, des);
