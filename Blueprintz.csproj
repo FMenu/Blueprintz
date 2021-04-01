@@ -65,6 +65,9 @@
     <Compile Include="Editor\EditorCanvas.cs" />
     <Compile Include="Editor\EditorTabHandler.cs" />
     <Compile Include="Editor\FireworkType.cs" />
+    <Compile Include="Editor\ItemSelectionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Encoding\BinaryEncoder.cs" />
     <Compile Include="Encoding\BinarySerializer.cs" />
     <Compile Include="Encoding\JsonSerializer.cs" />
@@ -96,6 +99,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Blueprintz.resx">
       <DependentUpon>Blueprintz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editor\ItemSelectionWindow.resx">
+      <DependentUpon>ItemSelectionWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Style\MaterialMessageBox.resx">
       <DependentUpon>MaterialMessageBox.cs</DependentUpon>
